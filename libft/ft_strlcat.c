@@ -1,22 +1,32 @@
-#include "stdio.h"
-#include <string.h>
+#include "libft.h"
 
-int ft_strlcat (char *dest, const char *src, size_t size)
+int ft_strlcat(char *dst, const char *src, size_t s)
 {
-	int i = 0, l = 0, l2 = 0;;
-	while(src[l])
-		l++;
-	while(dst[l2])
-		l2++;
+	int i,j,dlen,slen;
 	
-	if (l <= size)
-		return size + l;
-	while (src[i] && i < size -1)
+	i = 0;
+	j = ft_strlen(dst);
+	dlen = ft_strlen(dst);
+	slen = ft_strlen(src);
+	
+	if ((dst == NULL && s == 0) || (dst == NULL || dlen >= s))
 	{
-		dest[l] = src[i];
-		l++;
-		i++;
+		return s + slen;
 	}
-	dest[l] = '\0';
-	return l+l2;
+	while ( src[i] && i < s - dlen - 1) //amjnn a7sn blan katchof wach i 9l mn size d dkchi li 5ask t3mro
+	{
+		dst[j] = src[i];
+		i++;
+		j++;
+	}
+	dst[j] = '\0';
+	return dlen + slen;
 }
+
+/*int main()
+{
+	char d[17] = "baysal ";
+	char s[9] = "zbo kbir";
+	printf("%d\n", ft_strlcat(d,s,18));
+	printf("%s\n",d);
+}*/
