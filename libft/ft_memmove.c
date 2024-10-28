@@ -27,8 +27,8 @@ void *ft_memmove (void *dest, const void *src, size_t n)
 		d[i] = '\0';
 	}
 	return (void *)d;
-/*
 }
+/*
 int main()
 {
         char s[] = "baysal";
