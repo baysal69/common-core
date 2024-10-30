@@ -1,4 +1,4 @@
-#include "LIBFT_H"
+#include "libft.h"
 
 int ft_isalphanum(int c)
 {

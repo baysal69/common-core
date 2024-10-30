@@ -1,5 +1,4 @@
 #include "libft.h"
-#include <string.h>
 
 void *ft_memcpy(void *dest, const void *src, size_t n)
 {
@@ -17,7 +16,8 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	d[i] = '\0';
 	return (void *)d;
-}
+} 
+/*
 int main()
 {
 	char s[] = "baysal";
@@ -25,4 +25,4 @@ int main()
 	char f[6];
 	printf("%s\n",(char *) ft_memcpy(d,s,8));
 	printf("%s\n",(char *)    memcpy(f,s,8));
-}
+}*/

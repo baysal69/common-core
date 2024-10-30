@@ -1,4 +1,4 @@
-/*#include "LIBFT_H"*/
+#include "libft.h"
 int ft_atoi(char *str)
 {
 	int i = 0,res = 0;

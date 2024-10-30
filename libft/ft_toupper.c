@@ -1,4 +1,4 @@
-#include "LIBFT_H"
+#include "libft.h"
 
 char ft_toupper (char c)
 {
