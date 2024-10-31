@@ -9,12 +9,12 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	str = (unsigned char *)s;
 	ch = (unsigned char) c;
-	while (str[i] != ch &&i < n)
+	while (str[i] && i < n)
 	{
+		if (str[i] == ch)
+			return (void*)(str + i);
 		i++;
 	}
-	if (str[i] == ch)
-                        return (void *)(s + i);
 	return (NULL);
 }
 /*

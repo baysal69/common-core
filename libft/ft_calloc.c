@@ -6,6 +6,6 @@ void *ft_calloc (size_t nmemb, size_t size)
 	if  (!str)
 		return NULL;
 
-	ft_bzero(str,size);
+	ft_bzero(str,nmemb * size);
 	return (void *)str;
 }

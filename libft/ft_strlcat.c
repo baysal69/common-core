@@ -9,11 +9,11 @@ int ft_strlcat(char *dst, const char *src, size_t s)
 	dlen = ft_strlen(dst);
 	slen = ft_strlen(src);
 	
-	if ((dst == NULL && s == 0) || (dst == NULL || dlen >= s))
+	if ((dst == NULL && s == 0) || (dst == NULL || dlen >= (int)s))
 	{
 		return s + slen;
 	}
-	while ( src[i] && i < s - dlen - 1) //amjnn a7sn blan katchof wach i 9l mn size d dkchi li 5ask t3mro
+	while ( src[i] && i < (int)s - dlen - 1) //amjnn a7sn blan katchof wach i 9l mn size d dkchi li 5ask t3mro
 	{
 		dst[j] = src[i];
 		i++;

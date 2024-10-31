@@ -11,7 +11,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 		result = malloc(1);
 		if (!result)
 			return NULL;
-		result[0] = '/0';
+		result[0] = '\0';
 		return result;
 	}
 	if ( len > ft_strlen(s) - start)
@@ -19,7 +19,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	result = malloc(sizeof(char) * (len +1));
 	if (!result)
 		return NULL;
-	ft_strlcpy(q, &q[start], len + 1);
-	return q;
+	ft_strlcpy(result, &result[start], len + 1);
+	return result;
 }
 

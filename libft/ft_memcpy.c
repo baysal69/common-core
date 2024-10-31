@@ -9,12 +9,12 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
 		return NULL;
 	if(dest == src)
 		return (void *)dest;
-	while( s[i] && i < n)
+	while( i < n)
 	{
 		d[i] = s[i];
 		i++;
 	}
-	d[i] = '\0';
+	//d[i] = '\0';
 	return (void *)d;
 } 
 /*

@@ -11,21 +11,15 @@ void *ft_memmove (void *dest, const void *src, size_t n)
 	{
 		while (n > 0)
 		{
-			d[i -1] = s[i - 1];
+			d[n -1] = s[n - 1];
 			n--;
 		}
 	}
 	else
 	{
-		while(s[i] && i  < n)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	
-		d[i] = '\0';
+		ft_memcpy(dest,src,n);
 	}
-	return (void *)d;
+	return (void *)dest;
 }
 /*
 int main()
