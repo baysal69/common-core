@@ -4,10 +4,8 @@ char *ft_strdup (const char *s)
 {
 	char *d;
 	int i = 0;
-	int l = 0;
-	while (s[l])
-		l++;
-	d = malloc(sizeof(char) * l);
+	int l = ft_strlen(s);
+	d = malloc((sizeof(char) * l) + 1);
 	while (s[i])
 	{
 		d[i] = s[i];
