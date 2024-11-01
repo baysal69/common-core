@@ -35,12 +35,8 @@ char *ft_strjoin (char const *s1, char const *s2)
 {
 	char *str1 = (unsigned char *)s1;
 	char *str2 = (unsigned char *)s2;
-	if (!s1 && !s2)
+	if ((!s1 && !s2) || (!s1 || !s2))
 		return NULL;
-	else if (!s1)
-		return ft_strdup(s2);
-	else if (!s2)
-		return ft_strdup(s1);
 	int ttl = ft_strlen(str1) + ft_strlen(str2);
 	char *r = malloc(sizeof(char) * (ttl + 1));
 	if (!r)
