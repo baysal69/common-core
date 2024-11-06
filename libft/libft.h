@@ -34,7 +34,7 @@ int ft_isalnum(int c);
 void *ft_memcpy(void *dest, const void *src, size_t n);
 int ft_isalpha(char c);
 void *ft_memmove (void *dest, const void *src, size_t n);
-int ft_strncp(const char *s1, const char *s2, size_t n);
+int ft_strncmp(const char *s1, const char *s2, size_t n);
 int ft_isascii(int c);
 void *ft_memset(void *s, int c, size_t n);
 char *ft_strnstr(const char *big, const char *little, size_t len);
@@ -51,4 +51,5 @@ void ft_putnbr_fd(int n, int fd);
 void ft_striteri(char *s, void (*f)(unsigned int,char *));
 char *ft_strmapi(char const *s, char(*f)(unsigned int,char));
 char *ft_itoa(int n);
+char **ft_split(char const *s, char c);
 #endif
