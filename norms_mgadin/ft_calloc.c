@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:23:06 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/06 15:23:39 by waissi           ###   ########.fr       */
+/*   Updated: 2024/11/06 17:48:57 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*str;
 
-	str = malloc(sizeof(size_t) * size);
+	str = (char *)malloc(size * nmemb);
 	if (!str)
 		return (NULL);
 	ft_bzero(str, nmemb * size);

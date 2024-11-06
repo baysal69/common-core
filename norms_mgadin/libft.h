@@ -6,7 +6,7 @@
 /*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:34:32 by waissi            #+#    #+#             */
-/*   Updated: 2024/10/30 22:51:13 by waissi           ###   ########.fr       */
+/*   Updated: 2024/11/06 18:51:14 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 #include <stddef.h>
 #include <stdlib.h>
 int ft_isdigit(int c);
+char *ft_strtrim(char const *s1, char const *set); 
 char *ft_strrchr(const char *str, char c);
 char *ft_strchr(const char *str,char c);
-int ft_atoi(char *str);
+int ft_atoi(const char *str);
 int ft_isprint(int c);
 char *ft_strdup(const char *s);
 char ft_tolower(int c);
@@ -34,7 +35,7 @@ int ft_isalnum(int c);
 void *ft_memcpy(void *dest, const void *src, size_t n);
 int ft_isalpha(char c);
 void *ft_memmove (void *dest, const void *src, size_t n);
-int ft_strncmp(const char *s1, const char *s2, size_t n);
+int ft_strncmp(const char *s1, const char *s2, unsigned int n);
 int ft_isascii(int c);
 void *ft_memset(void *s, int c, size_t n);
 char *ft_strnstr(const char *big, const char *little, size_t len);

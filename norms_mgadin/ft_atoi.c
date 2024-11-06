@@ -6,13 +6,13 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:09:32 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/06 15:10:27 by waissi           ###   ########.fr       */
+/*   Updated: 2024/11/06 17:46:27 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	res;

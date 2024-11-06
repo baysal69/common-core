@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:44:04 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/06 15:45:50 by waissi           ###   ########.fr       */
+/*   Updated: 2024/11/06 19:05:31 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	ft_strlcat(char *dst, const char *src, size_t s)
 	j = ft_strlen(dst);
 	dlen = ft_strlen(dst);
 	slen = ft_strlen(src);
-	if ((dst == NULL && s == 0) || (dst == NULL || dlen >= (int)s))
+	if ((dst == NULL && s == 0) || (dst == NULL || dlen >= s))
 	{
 		return (s + slen);
 	}
-	while (src[i] && i < (int)s - dlen - 1)
+	while (src[i] && i < s - dlen - 1)
 	{
 		dst[j] = src[i];
 		i++;
