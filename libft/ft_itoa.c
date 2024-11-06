@@ -27,6 +27,8 @@ char *ft_itoa(int n)
 		nb *= -1;
 	res[i] = '\0';
 	i--;
+	if ( n == 0)
+		return "0";
 	while( i >= 0)
 	{
 		res[i] = (nb % 10) + 48;
@@ -40,7 +42,6 @@ char *ft_itoa(int n)
 /*
 int main()
 {
-	printf("%s", ft_itoa(421337));
-}
-*/
+	printf("%s", ft_itoa(2147483647));
+}*/
 
