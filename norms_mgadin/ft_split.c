@@ -32,37 +32,49 @@ static void    free_array(char **arr, int i)
     }
 }
 
-char    **ft_split(char const *s, char c)
-{
-    char    **lst;
-    size_t  word_len;
-    int     i;
 
-    lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
-    if (!s || !lst)
-        return (0);
-    i = 0;
+
+// split_words - Helper function to split the string into words
+char *split_words(char const *s, char c, char **lst)
+{
+    size_t  word_len;
+    int     i = 0;
+
     while (*s)
     {
-        while (*s == c && *s)
+        while (*s == c && *s) // Skip delimiters
             s++;
         if (*s)
         {
-            if (!ft_strchr(s, c))
-                word_len = ft_strlen(s);
-            else
-                word_len = ft_strchr(s, c) - s;
-            lst[i] = ft_substr(s, 0, word_len);
-            if (!lst[i])
-            {
-                free_array(lst, i);
-                return NULL;
-            }
+            word_len = 0;
+            while (s[word_len] && s[word_len] != c)
+                word_len++;
+            lst[i] = ft_substr(s, 0, word_len); // Extract the word
+            if (!lst[i]) // Handle memory allocation failure
+                return (NULL);
             i++;
-            s += word_len;
+            s += word_len; // Move past the current word
         }
     }
-    lst[i] = NULL;
+    lst[i] = NULL; // Null-terminate the list of words
+    return (lst);
+}
+char **ft_split(char const *s, char c)
+{
+    char    **lst;
+    size_t  word_count;
+
+    if (!s)
+        return (NULL);
+    word_count = ft_countword(s, c);
+    lst = (char **)malloc((word_count + 1) * sizeof(char *));
+    if (!lst)
+        return (NULL);
+    if (split_words(s, c, lst) == NULL)
+    {
+        free(lst);
+        return (NULL);
+    }
     return (lst);
 }
 
