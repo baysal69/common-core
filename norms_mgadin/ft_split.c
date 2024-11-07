@@ -1,105 +1,85 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:36:16 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/06 15:36:18 by waissi           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
-#include "string.h"
 
-static int	count_substrings(const char *s, char c)
+static size_t   ft_countword(char const *s, char c)
 {
-	int	count;
-	int	in_substring;
+    size_t  count;
 
-	count = 0;
-	in_substring = 0;
-	while (*s)
-	{
-		if (*s != c && !in_substring)
-		{
-			in_substring = 1;
-			count++;
-		}
-		else if (*s == c)
-		{
-			in_substring = 0;
-		}
-		s++;
-	}
-	return (count);
+    if (!*s)
+        return (0);
+    count = 0;
+    while (*s)
+    {
+        while (*s == c)
+            s++;
+        if (*s)
+            count++;
+        while (*s != c && *s)
+            s++;
+    }
+    return (count);
 }
 
-static char	*copy_substring(const char *start, size_t length)
+static void    free_array(char **arr, int i)
 {
-	char	*substr;
-
-	substr = (char *)malloc(length + 1);
-	if (!substr)
-	{
-		return (NULL);
-	}
-	ft_strlcpy(substr, start, length + 1);
-	substr[length] = '\0';
-	return (substr);
+    if (arr)
+    {
+    while (i >= 0)
+    {
+        free(arr[i]);
+        i--;   
+    }
+    free(arr);
+    }
 }
 
-char	**ft_split(const char *s, char c)
+char    **ft_split(char const *s, char c)
 {
-	int			substr_count;
-	char		**result;
-	int			index;
-	const char	*start = NULL;
+    char    **lst;
+    size_t  word_len;
+    int     i;
 
-	if (!s)
-		return (NULL);
-	substr_count = count_substrings(s, c);
-	result = (char **)malloc((substr_count + 1) * sizeof(char *));
-	if (!result)
-		return (NULL);
-	index = 0;
-	while (*s)
-	{
-		if (*s != c)
-		{
-			if (start == NULL)
-			{
-				start = s;
-			}
-		}
-		else
-		{
-			if (start != NULL)
-			{
-				result[index] = copy_substring(start, s - start);
-				index++;
-				start = NULL;
-			}
-		}
-		s++;
-	}
-	if (start != NULL)
-	{
-		result[index] = copy_substring(start, s - start);
-		index++;
-	}
-	result[index] = NULL;
-	return (result);
+    lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
+    if (!s || !lst)
+        return (0);
+    i = 0;
+    while (*s)
+    {
+        while (*s == c && *s)
+            s++;
+        if (*s)
+        {
+            if (!ft_strchr(s, c))
+                word_len = ft_strlen(s);
+            else
+                word_len = ft_strchr(s, c) - s;
+            lst[i] = ft_substr(s, 0, word_len);
+            if (!lst[i])
+            {
+                free_array(lst, i);
+                return NULL;
+            }
+            i++;
+            s += word_len;
+        }
+    }
+    lst[i] = NULL;
+    return (lst);
 }
-/*
-int	main(void)
-{
-	char *ch= "baysal,head,is,so,big";
-	int i = 0;
-	char **chh = ft_split(ch,',');
-	while (chh[i]){
-	printf("%s\n",chh[i]);
-	i++;
-	}
-}*/
+
+// int main()
+// {
+// 	char *ch= "baysal,zbo,kbir,bzaaaaf";
+// 	int i = 0;
+// 	char **chh = ft_split(ch,',');
+// 	while (chh[i]){
+// 	printf("%s\n",chh[i]);
+// 	i++;
+// 	}
+//     while ( i < 0)
+//     {
+//         free(chh[i]);
+//         i--;
+//     }
+//     free(chh);
+
+// }
