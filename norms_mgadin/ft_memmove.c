@@ -23,7 +23,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	d = (unsigned char *)dest;
 	if (!d && !s)
 		return (NULL);
-	if (d > s)
+	if ((d > s))
 	{
 		while (n > 0)
 		{
@@ -37,14 +37,15 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return ((void *)dest);
 }
-/*
-int	main(void)
-{
-		char s[] = "baysal";
-		char d[6];
-		char f[6];
 
-		printf("%s\n",(char *) ft_memmove(d,s,8));
-		printf("%s\n",(char *)    memmove(f,s,8));
-}
-*/
+// int	main(void)
+// {
+// 		char s[] = "baysal";
+// 		char z[] = "baysal";
+// 		char d[6];
+// 		char f[6];
+
+// 		printf("%s\n",(char *) ft_memmove(s + 3,s,4));
+// 		printf("%s\n",(char *)    memmove(z + 3,z,4));
+// }
+

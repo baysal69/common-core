@@ -32,12 +32,12 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return ((void *)d);
 }
-/*
-int	main(void)
-{
-	char s[] = "baysal";
-	char d[6];
-	char f[6];
-	printf("%s\n",(char *) ft_memcpy(d,s,8));
-	printf("%s\n",(char *)    memcpy(f,s,8));
-}*/
+
+// int	main(void)
+// {
+// 	char s[] = "baysal";
+// 	char d[6];
+// 	char f[6];
+// 	printf("%s",(char *) ft_memcpy(NULL,s,8));
+// 	//printf("%s",(char *)    memcpy(NULL,s,8));
+// }
