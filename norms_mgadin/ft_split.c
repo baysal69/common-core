@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 03:44:36 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/08 03:45:20 by waissi           ###   ########.fr       */
+/*   Updated: 2024/11/08 03:50:52 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*split_words(char const *s, char c, char **lst)
 		}
 	}
 	lst[i] = NULL;
-	return (lst);
+	return ((char *)(lst));
 }
 
 char	**ft_split(char const *s, char c)
