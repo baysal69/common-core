@@ -45,21 +45,21 @@ void	ft_strcpy(char *dest, const char *src)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str1;
-	char	*str2;
-	int		ttl;
-	char	*r;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	int				ttl;
+	char			*r;
 
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
 	if ((!s1 && !s2) || (!s1 || !s2))
 		return (NULL);
-	ttl = ft_strlen(str1) + ft_strlen(str2);
+	ttl = ft_strlen((char *)str1) + ft_strlen((char *)str2);
 	r = malloc(sizeof(char) * (ttl + 1));
 	if (!r)
 		return (NULL);
-	ft_strcpy(r, s1);
-	ft_strcat(r, str2);
+	ft_strcpy(r, (char *)str1);
+	ft_strcat(r, (char *)str2);
 	return ((char *)r);
 }
 /*

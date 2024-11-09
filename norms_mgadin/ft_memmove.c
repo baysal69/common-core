@@ -14,11 +14,9 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int		i;
-	char	*s;
-	char	*d;
+	unsigned char	*s;
+	unsigned char	*d;
 
-	i = 0;
 	s = (unsigned char *)src;
 	d = (unsigned char *)dest;
 	if (!d && !s)
@@ -48,4 +46,3 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 // 		printf("%s\n",(char *) ft_memmove(s + 3,s,4));
 // 		printf("%s\n",(char *)    memmove(z + 3,z,4));
 // }
-

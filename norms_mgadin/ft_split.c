@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 03:44:36 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/09 00:25:06 by waissi           ###   ########.fr       */
+/*   Created: 2024/11/09 16:32:23 by waissi            #+#    #+#             */
+/*   Updated: 2024/11/09 16:32:30 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static size_t	ft_countword(char const *s, char c)
 	return (count);
 }
 
-static void	free_array(char **arr, int i)
+static void	free_array(char **arr, size_t i)
 {
 	if (arr)
 	{
-		while (i >= 0)
+		while (i > 0)
 		{
-			free(arr[i]);
+			free(arr[i - 1]);
 			i--;
 		}
 		free(arr);
@@ -47,8 +47,8 @@ static void	free_array(char **arr, int i)
 char	*split_words(char const *s, char c, char **lst)
 {
 	size_t	word_len;
-	int		i;
-	
+	size_t	i;
+
 	i = 0;
 	while (*s)
 	{
@@ -61,7 +61,10 @@ char	*split_words(char const *s, char c, char **lst)
 				word_len++;
 			lst[i] = ft_substr(s, 0, word_len);
 			if (!lst[i])
+			{
+				free_array(lst, i);
 				return (NULL);
+			}
 			i++;
 			s += word_len;
 		}
@@ -83,26 +86,32 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	if (split_words(s, c, lst) == NULL)
 	{
-		free_array(lst,ft_countword(s,c));
 		free(lst);
 		return (NULL);
 	}
 	return (lst);
 }
+// int main()
+// {
+// 	char *ch = "baysal,zbo,kbir,bzaaaaf";
+// 	int i = 0;
+// 	char **chh = ft_split(ch, ',');
+// 	if (chh)  // check if splitting was successful
+// 	{
+// 		while (chh[i])  // print all words
+// 		{
+// 			printf("%s\n", chh[i]);
+// 			i++;
+// 		}
 
- int main()
- {
- 	char *ch= "baysal,zbo,kbir,bzaaaaf";
- 	int i = 0;
- 	char **chh = ft_split(ch,',');
- 	while (chh[i]){
- 	printf("%s\n",chh[i]);
- 	i++;
- 	}
-     while ( i < 0)
-     {
-         free(chh[i]);
-         i--;
-     }
-     free(chh);
-}
+// 		// Free memory after using the split array
+// 		i = 0;
+// 		while (chh[i])  // free all allocated words
+// 		{
+// 			free(chh[i]);
+// 			i++;
+// 		}
+// 		free(chh);  // free the array itself
+// 	}
+// 	return (0);
+// }
