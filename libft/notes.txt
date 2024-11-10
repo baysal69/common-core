@@ -1,2 +1,0 @@
-raj3 m3ak strlcat w substr
-makefile mchfor
