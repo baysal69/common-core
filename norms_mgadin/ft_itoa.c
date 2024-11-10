@@ -40,8 +40,8 @@ char	*ft_itoa(int n)
 
 	i = int_len(n);
 	res = (char *)malloc((i + 1) * sizeof(char));
-	if(!res)
-		return NULL;
+	if (!res)
+		return (NULL);
 	nb = n;
 	if (n < 0)
 		nb *= -1;
