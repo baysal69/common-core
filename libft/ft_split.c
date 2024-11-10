@@ -1,69 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/09 16:32:23 by waissi            #+#    #+#             */
+/*   Updated: 2024/11/09 16:32:30 by waissi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "string.h"
-static int count_substrings(const char *s, char c) {
-    int count = 0;
-    int in_substring = 0;
 
-    while (*s) {
-        if (*s != c && !in_substring) {
-            in_substring = 1;
-            count++;
-        } else if (*s == c) {
-            in_substring = 0;
-        }
-        s++;
-    }
-    return count;
-}
-
-static char *copy_substring(const char *start, size_t length) {
-    char *substr = (char *)malloc(length + 1);
-    if (!substr) {
-        return NULL; 
-    }
-    ft_strlcpy(substr, start, length + 1);
-    substr[length] = '\0'; 
-    return substr;
-}
-
-char **ft_split(const char *s, char c) {
-    if (!s)
-        return NULL; 
-    int substr_count = count_substrings(s, c);
-    char **result = (char **)malloc((substr_count + 1) * sizeof(char *));
-    if (!result)
-        return NULL; 
-    int index = 0;
-    const char *start = NULL;
-    while (*s) {
-        if (*s != c) {
-            if (start == NULL) {
-                start = s; 
-            }
-        } else {
-            if (start != NULL) {
-                result[index] = copy_substring(start, s - start);
-                index++; 
-                start = NULL; 
-            }
-        }
-        s++;
-    }
-    if (start != NULL) {
-        result[index] = copy_substring(start, s - start);
-        index++; 
-    }
-    result[index] = NULL; 
-    return result;
-}
-/*
-int main()
+static size_t	ft_countword(char const *s, char c)
 {
-	char *ch= "baysal,head,is,so,big";
-	int i = 0;
-	char **chh = ft_split(ch,',');
-	while (chh[i]){
-	printf("%s\n",chh[i]);
-	i++;
+	size_t	count;
+
+	if (!*s)
+		return (0);
+	count = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s != c && *s)
+			s++;
 	}
-}*/
+	return (count);
+}
+
+static void	free_array(char **arr, size_t i)
+{
+	if (arr)
+	{
+		while (i > 0)
+		{
+			free(arr[i - 1]);
+			i--;
+		}
+		free(arr);
+	}
+}
+
+char	*split_words(char const *s, char c, char **lst)
+{
+	size_t	word_len;
+	size_t	i;
+
+	i = 0;
+	while (*s)
+	{
+		while (*s == c && *s)
+			s++;
+		if (*s)
+		{
+			word_len = 0;
+			while (s[word_len] && s[word_len] != c)
+				word_len++;
+			lst[i] = ft_substr(s, 0, word_len);
+			if (!lst[i])
+			{
+				free_array(lst, i);
+				return (NULL);
+			}
+			i++;
+			s += word_len;
+		}
+	}
+	lst[i] = NULL;
+	return ((char *)(lst));
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**lst;
+	size_t	word_count;
+
+	if (!s)
+		return (NULL);
+	word_count = ft_countword(s, c);
+	lst = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (!lst)
+		return (NULL);
+	if (split_words(s, c, lst) == NULL)
+	{
+		free(lst);
+		return (NULL);
+	}
+	return (lst);
+}
+// int main()
+// {
+// 	char *ch = "baysal,zbo,kbir,bzaaaaf";
+// 	int i = 0;
+// 	char **chh = ft_split(ch, ',');
+// 	if (chh)  // check if splitting was successful
+// 	{
+// 		while (chh[i])  // print all words
+// 		{
+// 			printf("%s\n", chh[i]);
+// 			i++;
+// 		}
+
+// 		// Free memory after using the split array
+// 		i = 0;
+// 		while (chh[i])  // free all allocated words
+// 		{
+// 			free(chh[i]);
+// 			i++;
+// 		}
+// 		free(chh);  // free the array itself
+// 	}
+// 	return (0);
+// }

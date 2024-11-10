@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/06 15:47:02 by waissi            #+#    #+#             */
+/*   Updated: 2024/11/06 15:47:07 by waissi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_check_set(char const c, char const *set)
@@ -43,7 +55,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (new);
 }
 /*
-int main()
+int	main(void)
 {
 	char ch[] = "---baysal---";
 	char chh[] = "---";

@@ -1,34 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/06 15:34:31 by waissi            #+#    #+#             */
+/*   Updated: 2024/11/06 15:34:32 by waissi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void *ft_memmove (void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int i = 0;
-	char *s = (unsigned char *)src;
-	char *d = (unsigned char *)dest;
+	unsigned char	*s;
+	unsigned char	*d;
+
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
 	if (!d && !s)
-		return NULL;
-	if(d > s)
+		return (NULL);
+	if ((d > s))
 	{
 		while (n > 0)
 		{
-			d[n -1] = s[n - 1];
+			d[n - 1] = s[n - 1];
 			n--;
 		}
 	}
 	else
 	{
-		ft_memcpy(dest,src,n);
+		ft_memcpy(dest, src, n);
 	}
-	return (void *)dest;
+	return ((void *)dest);
 }
-/*
-int main()
-{
-        char s[] = "baysal";
-        char d[6];
-        char f[6];
-        printf("%s\n",(char *) ft_memmove(d,s,8));
-        printf("%s\n",(char *)    memmove(f,s,8));
-}
-*/
 
+// int	main(void)
+// {
+// 		char s[] = "baysal";
+// 		char z[] = "baysal";
+// 		char d[6];
+// 		char f[6];
+
+// 		printf("%s\n",(char *) ft_memmove(s + 3,s,4));
+// 		printf("%s\n",(char *)    memmove(z + 3,z,4));
+// }
