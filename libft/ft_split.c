@@ -93,7 +93,7 @@ char	**ft_split(char const *s, char c)
 }
 // int main()
 // {
-// 	char *ch = "baysal,zbo,kbir,bzaaaaf";
+// 	char *ch = "baysal,kbir,bzaaaaf";
 // 	int i = 0;
 // 	char **chh = ft_split(ch, ',');
 // 	if (chh)  // check if splitting was successful
