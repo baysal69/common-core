@@ -66,7 +66,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 int	main(void)
 {
 	char	ch[] = "baysal ";
-	char	chh[] = "zbo kbir";
+	char	chh[] = "kbir";
 
 	printf("%s",ft_strjoin(ch,chh));
 }
