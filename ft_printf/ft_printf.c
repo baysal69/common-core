@@ -1,3 +1,4 @@
+#include "ft_printf.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
@@ -144,10 +145,10 @@ int ft_printf(char *s, ...)
 	}
 	return count;
 }
-int main()
+/*int main()
 {
 	int a = 1234567;
 	int *aa = NULL;
 	ft_printf("%d\n",ft_printf("%%\n", 69420));
 	printf("%d",printf("%%\n", 69420));
-}
+}*/
