@@ -1,6 +1,18 @@
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 18:17:06 by waissi            #+#    #+#             */
+/*   Updated: 2024/12/19 18:17:46 by waissi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_printf(const char *s,...);
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+int	ft_printf(const char *s, ...);
 
 #endif
