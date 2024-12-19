@@ -47,7 +47,7 @@ int	ft_putnbr(long nb)
 
 }
 
-int ft_puthex(unsigned long long n, char c,char f)
+int ft_puthex(unsigned long n, char c,char f)
 {
 	int count = 0;
 	/*if (!n)
@@ -89,7 +89,7 @@ int ft_puthex(unsigned long long n, char c,char f)
 	ft_puthex(n,'x');
 }
 */
-int ft_printf(char *s, ...)
+int ft_printf(const char *s, ...)
 {
 	va_list args;
 	va_start(args,s);
@@ -123,15 +123,15 @@ int ft_printf(char *s, ...)
 			}
 			else if(s[i+1] == 'u')
 			{
-				ft_putnbr(va_arg(args, unsigned int));
+				count +=ft_putnbr(va_arg(args, unsigned int));
 				i++;
 			}
 			else if(s[i+1] == 'x' || s[i+1] == 'X')
 			{
 				if (s[i+1] == 'x')
-					count += ft_puthex(va_arg(args,unsigned long long),'x',0);
+					count += ft_puthex(va_arg(args,unsigned int),'x',0);
 				else
-					count += ft_puthex(va_arg(args,unsigned long long),'X',0);
+					count += ft_puthex(va_arg(args,unsigned int),'X',0);
 				i++;
 			}
 			else if(s[i+1] == 'p')
@@ -150,11 +150,12 @@ int ft_printf(char *s, ...)
 	}
 	return count;
 }
+#include <limits.h>
 /*int main()
 {
 	int a = 1234567;
 	int *aa = &a;
 	int *b = NULL;
-	ft_printf("%d\n",ft_printf("%s %c %x %X %p %d %i %p\n", "s", 's', a, a, aa, a, a, b));
-	printf("%d\n",printf("%s %c %x %X %p %d %i %p\n", "s", 's', a, a, aa, a, a, b));
+	ft_printf("%d\n",ft_printf("%x\n", LONG_MAX));
+	printf("%d\n",printf("%x\n", LONG_MAX));
 }*/
