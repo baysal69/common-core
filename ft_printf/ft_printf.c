@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:14:42 by waissi            #+#    #+#             */
-/*   Updated: 2024/12/19 18:14:46 by waissi           ###   ########.fr       */
+/*   Updated: 2024/12/21 21:15:38 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int	ft_putstr(char *s, char c, int f)
 
 	i = 0;
 	count = 0;
+	if (s == NULL && f == 0)
+	{
+		count += write(1, "(null)", 6);
+		return (count);
+	}
 	if (f == 1)
 		count += write(1, &c, 1);
 	else
@@ -102,6 +107,8 @@ int	process_format(char specifier, va_list args)
 			return (write(1, "(nil)", 5));
 		return (ft_puthex(x, 'x', 1));
 	}
+	else
+		return (ft_printf("%%%c", specifier));
 	return (0);
 }
 
@@ -111,6 +118,8 @@ int	ft_printf(const char *s, ...)
 	int		i;
 	int		count;
 
+	if (!s)
+		return (-1);
 	va_start(args, s);
 	i = 0;
 	count = 0;
@@ -128,18 +137,22 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (count);
 }
+/*
+#include <limits.h>
 
-/*#include <limits.h>
-int main()
+int	main(void)
 {
-	int a = -1;
-	int *aa = &a;
-	int *b = NULL;
-	ft_printf("%d\n",ft_printf("%p\n", -1));
-	printf("%d\n",printf("%p\n", -1));
-}
+	int	a;
+	int	*aa;
+	int	*b;
 
-int ft_printf(const char *s, ...)
+	a = -1;
+	aa = &a;
+	b = NULL;
+	ft_printf("%d\n",ft_printf(NULL));
+	//printf("%d\n",printf("%p\n", -1));
+}
+int	ft_printf(const char *s, ...)
 {
 	va_list args;
 	va_start(args,s);
