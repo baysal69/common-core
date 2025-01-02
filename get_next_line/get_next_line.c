@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 00:15:59 by waissi            #+#    #+#             */
-/*   Updated: 2024/12/31 17:18:19 by waissi           ###   ########.fr       */
+/*   Updated: 2025/01/02 04:25:28 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_join(char *line, char c)
 	int		i;
 	char	*str;
 
+	i = 0;
 	if (line)
 		i = ft_strlen(line);
 	str = malloc(sizeof(char) * (i + 2));
@@ -64,9 +65,9 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
+/*
  int main() {
-     int fd = open("/mnt/c/Users/baysal/Desktop/get_next_line/42test-gnl-station-2022/test/2-otarie.txt", O_RDONLY);
+     int fd = open("a.txt", O_RDONLY);
      char *line = NULL;
 
      // Read each line from the file and print it
@@ -80,4 +81,4 @@ char	*get_next_line(int fd)
      // Close the file
      close(fd);
      return (0);
-}
+}*/
