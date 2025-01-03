@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 01:48:45 by waissi            #+#    #+#             */
-/*   Updated: 2025/01/03 01:48:46 by waissi           ###   ########.fr       */
+/*   Created: 2025/01/03 01:59:16 by waissi            #+#    #+#             */
+/*   Updated: 2025/01/03 02:04:40 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@ static int	read_buffer(int fd, char *buffer, int *pos, int *i)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	static int	i;
-	static int	pos;
+	static char	buffer[1024][BUFFER_SIZE];
+	static int	i[1024];
+	static int	pos[1024];
 	char		*line;
 	char		c;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
 	while (1)
 	{
-		if (pos >= i && !read_buffer(fd, buffer, &pos, &i))
+		if (pos[fd] >= i[fd]
+			&& !read_buffer(fd, buffer[fd], &pos[fd], &i[fd]))
 			return (line);
-		c = buffer[pos++];
+		c = buffer[fd][pos[fd]++];
 		line = ft_join(line, c);
 		if (!line || c == '\n')
 			break ;
