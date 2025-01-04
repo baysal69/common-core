@@ -6,11 +6,11 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:59:16 by waissi            #+#    #+#             */
-/*   Updated: 2025/01/03 02:04:40 by waissi           ###   ########.fr       */
+/*   Updated: 2025/01/04 16:56:04 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	read_buffer(int fd, char *buffer, int *pos, int *i)
 {
