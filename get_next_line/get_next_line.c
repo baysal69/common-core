@@ -6,26 +6,28 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 01:48:45 by waissi            #+#    #+#             */
-/*   Updated: 2025/01/03 01:48:46 by waissi           ###   ########.fr       */
+/*   Updated: 2025/01/04 17:21:16 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	read_buffer(int fd, char *buffer, int *pos, int *i)
+static int	read_buffer(int fd, char *buffer, int *pos, ssize_t *i)
 {
 	*i = read(fd, buffer, BUFFER_SIZE);
 	*pos = 0;
-	return (*i > 0);
+	if (*i > 0)
+		return (*i);
+	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	static int	i;
-	static int	pos;
-	char		*line;
-	char		c;
+	static char		buffer[BUFFER_SIZE];
+	static ssize_t	i;
+	static int		pos;
+	char			*line;
+	char			c;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
