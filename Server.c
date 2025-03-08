@@ -5,10 +5,15 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include "libft.h"
+#include "message.h"
 char *message;
 void text()
 {
-	ft_printf("%s",message);
+	 if (message != NULL) {
+        printf("Server received: %s\n", message);
+    } else {
+        printf("Server received: (NULL)\n");
+    }
 }
 
 int main()
@@ -19,6 +24,7 @@ int main()
 	ft_printf("To connect to this server follow this syntax.\n./client [PID] [Message]\n ");
 	while(1)
 	{
+		pause();
 	}
 
 

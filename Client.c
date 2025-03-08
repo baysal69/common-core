@@ -5,9 +5,8 @@
 #include <stdlib.h>
 #include "libft.h"
 #include <signal.h>
-
+#include "message.h"
 extern char *message;
-
 int main(int argc, char *argv[])
 {
 	if (argc == 3)
