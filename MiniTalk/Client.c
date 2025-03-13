@@ -6,12 +6,12 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:25:35 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/12 00:28:52 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/12 23:12:34 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
+#include "./ft_printf/ft_printf.h"
+#include "./libft/libft.h"
 #include <fcntl.h>
 #include <signal.h>
 #include <stdio.h>
@@ -32,8 +32,8 @@ void	send_message(int pid, char *message)
 	int	i;
 	int	j;
 	int	bit;
-	int	bit;
 
+	bit = 0;
 	i = 0;
 	j = 7;
 	while (message[i] != '\0')
