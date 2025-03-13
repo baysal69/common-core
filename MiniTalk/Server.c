@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:24:49 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/13 01:39:16 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/13 02:21:05 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@
 void	text(int signum)
 {
 	static int	i;
-	char		character;
+	static char		character;
 	int			gotten_bit;
 
-	character = 0;
 	gotten_bit = 0;
-	i = 0;
 	if (signum == SIGUSR1)
 		gotten_bit = 0;
 	else if (signum == SIGUSR2)
@@ -35,7 +33,10 @@ void	text(int signum)
 	i++;
 	if (i == 8)
 	{
-		ft_printf("%c", character);
+		if (character == '\0')
+			ft_printf("\n");
+		else	
+			ft_printf("%c", character);
 		character = 0;
 		i = 0;
 	}

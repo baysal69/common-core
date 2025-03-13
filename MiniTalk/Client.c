@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:25:35 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/12 23:12:34 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/13 02:14:34 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	send_signal(int pid, int bit)
 {
 	if (bit == 0)
 		kill(pid, SIGUSR1);
-	else
+	else if (bit == 1)
 		kill(pid, SIGUSR2);
-	usleep(150);
+	usleep(300);
 }
 
 void	send_message(int pid, char *message)
@@ -46,6 +46,11 @@ void	send_message(int pid, char *message)
 		}
 		i++;
 		j = 7;
+	}
+	while (j >= 0)
+	{
+		send_signal(pid, 0);
+		j--;
 	}
 }
 
