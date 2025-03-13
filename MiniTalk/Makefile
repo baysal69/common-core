@@ -23,7 +23,7 @@ PLBFT	= ./libft/libft.a
 all	: $(SRV) $(CLT) $(PPTF) $(PLBFT)
 
 $(SRV)	: Server.c $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) server.c $(PPTF) $(PLBFT) -o $(SRV)
+	cc $(FLAGS) Server.c $(PPTF) $(PLBFT) -o $(SRV)
 
 $(CLT) 	: Client.c $(PLBFT) $(PPTF) Minitalk.h
 	cc $(FLAGS) Client.c $(PPTF) $(PLBFT) -o $(CLT)
