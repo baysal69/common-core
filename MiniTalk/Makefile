@@ -12,6 +12,10 @@ SRC_SRV	= Server.c
 
 SRC_CLT	= Client.c
 
+OBJ_SRV = $(SRC_SRV:.c=.o)
+
+OBJ_CLT = $(SRC_CLT:.c=.o)
+
 PTF	= libftprintf.a
 
 LBFT	= libft.a
@@ -22,14 +26,17 @@ PLBFT	= ./libft/libft.a
 
 all	: $(SRV) $(CLT) $(PPTF) $(PLBFT)
 
-$(SRV)	: Server.c $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) Server.c $(PPTF) $(PLBFT) -o $(SRV)
+$(SRV)	: Server.c $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
+	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(SRV)
 
-$(CLT) 	: Client.c $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) Client.c $(PPTF) $(PLBFT) -o $(CLT)
+$(CLT) 	: Client.c $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
+	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
+
+%.o	: %.c Minitalk.h
+	cc $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf 
+	rm -rf $(OBJ_SRV) $(OBJ_CLT) 
 
 fclean:
 	rm -rf $(SRV) $(CLT)
