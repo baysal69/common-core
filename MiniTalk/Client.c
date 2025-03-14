@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 00:25:35 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/13 02:14:34 by waissi           ###   ########.fr       */
+/*   Created: 2025/03/14 01:43:57 by waissi            #+#    #+#             */
+/*   Updated: 2025/03/14 01:50:41 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,42 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+volatile int	g_ack_received;
+
+void	ack_handler(int signum)
+{
+	(void)signum;
+	g_ack_received = 1;
+}
+
 void	send_signal(int pid, int bit)
 {
+	g_ack_received = 0;
 	if (bit == 0)
 		kill(pid, SIGUSR1);
-	else if (bit == 1)
+	else
 		kill(pid, SIGUSR2);
-	usleep(300);
+	while (!g_ack_received)
+		usleep(100);
 }
 
 void	send_message(int pid, char *message)
 {
 	int	i;
 	int	j;
-	int	bit;
 
-	bit = 0;
 	i = 0;
-	j = 7;
-	while (message[i] != '\0')
+	while (message[i])
 	{
+		j = 7;
 		while (j >= 0)
 		{
-			bit = (message[i] >> j) & 1;
-			send_signal(pid, bit);
+			send_signal(pid, (message[i] >> j) & 1);
 			j--;
 		}
 		i++;
-		j = 7;
 	}
+	j = 7;
 	while (j >= 0)
 	{
 		send_signal(pid, 0);
@@ -56,16 +63,14 @@ void	send_message(int pid, char *message)
 
 int	main(int argc, char *argv[])
 {
-	int	pid;
+	int					pid;
+	struct sigaction	sa;
 
-	if (argc == 3)
-	{
-		pid = ft_atoi(argv[1]);
-		send_message(pid, argv[2]);
-	}
-	else
-	{
-		ft_printf("Unknow option for Client\n");
-		ft_printf("Usage: ./Client [pid] [message]\n");
-	}
+	if (argc != 3)
+		ft_printf("Usage: ./Client [PID] [Message]\n");
+	pid = ft_atoi(argv[1]);
+	sa.sa_flags = 0;
+	sa.sa_handler = ack_handler;
+	sigaction(SIGUSR1, &sa, NULL);
+	send_message(pid, argv[2]);
 }
