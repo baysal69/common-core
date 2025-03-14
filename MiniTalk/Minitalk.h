@@ -1,7 +1,19 @@
-#ifndef MINITALK_H
-#define MINITALK_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 01:44:26 by waissi            #+#    #+#             */
+/*   Updated: 2025/03/14 01:46:24 by waissi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "./ft_printf/ft_printf.h"
-#include "./libft/libft.h"
+#ifndef MINITALK_H
+# define MINITALK_H
+
+# include "./ft_printf/ft_printf.h"
+# include "./libft/libft.h"
 
 #endif
