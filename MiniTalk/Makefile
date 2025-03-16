@@ -27,19 +27,19 @@ PLBFT    = ./libft/libft.a
 all    : $(NAME) $(CLT)
 
 $(NAME)    : $(OBJ_SRV) $(PLBFT) $(PPTF)
-    cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(NAME)
+	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(NAME)
 
 $(CLT)     : $(OBJ_CLT) $(PLBFT) $(PPTF)
-    cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
+	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
 
 %.o    : %.c
-    cc $(FLAGS) -c $< -o $@
+	cc $(FLAGS) -c $< -o $@
 
 clean:
-    rm -rf $(OBJ_SRV) $(OBJ_CLT) 
+	rm -rf $(OBJ_SRV) $(OBJ_CLT) 
 
 fclean: clean
-    rm -rf $(NAME) $(CLT)
+	rm -rf $(NAME) $(CLT)
     
 re: fclean all
 
