@@ -2,15 +2,15 @@ CC 	= gcc
 
 FLAGS 	= -Wall -Wextra -Werror
 
-NAME 	= Client Server
+NAME 	= client server
 
-SRV 	= Server 
+SRV 	= server 
 
-CLT	= Client
+CLT	= client
 
-SRC_SRV	= Server.c
+SRC_SRV	= server.c
 
-SRC_CLT	= Client.c
+SRC_CLT	= client.c
 
 OBJ_SRV = $(SRC_SRV:.c=.o)
 
@@ -26,10 +26,10 @@ PLBFT	= ./libft/libft.a
 
 all	: $(SRV) $(CLT) $(PPTF) $(PLBFT)
 
-$(SRV)	: Server.c $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
+$(SRV)	: server.c $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
 	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(SRV)
 
-$(CLT) 	: Client.c $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
+$(CLT) 	: client.c $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
 	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
 
 %.o	: %.c Minitalk.h
