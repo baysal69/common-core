@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:24:49 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/14 01:49:36 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/16 02:05:44 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,20 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+int	g_current_client;
+
 void	text(int signum, siginfo_t *info, void *context)
 {
 	static int	i;
 	static char	character;
 
 	(void)context;
+	if (g_current_client != info->si_pid)
+	{
+		i = 0;
+		character = 0;
+		g_current_client = info->si_pid;
+	}
 	if (signum == SIGUSR1)
 		character = (character << 1) | 0;
 	else if (signum == SIGUSR2)

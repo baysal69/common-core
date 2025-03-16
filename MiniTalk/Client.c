@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:43:57 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/14 01:50:41 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/16 01:55:35 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ volatile int	g_ack_received;
 void	ack_handler(int signum)
 {
 	(void)signum;
-	g_ack_received = 1;
+	if (signum == SIGUSR1)
+		g_ack_received = 1;
 }
 
 void	send_signal(int pid, int bit)
