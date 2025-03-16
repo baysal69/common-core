@@ -1,46 +1,46 @@
-CC 	= gcc
+CC     = cc
 
-FLAGS 	= -Wall -Wextra -Werror
+FLAGS     = -Wall -Wextra -Werror
 
-NAME 	= client server
+NAME     = client server
 
-SRV 	= server 
+NAME     = server 
 
-CLT	= client
+CLT    = client
 
-SRC_SRV	= server.c
+SRC_SRV    = server.c
 
-SRC_CLT	= client.c
+SRC_CLT    = client.c
 
 OBJ_SRV = $(SRC_SRV:.c=.o)
 
 OBJ_CLT = $(SRC_CLT:.c=.o)
 
-PTF	= libftprintf.a
+PTF    = libftprintf.a
 
-LBFT	= libft.a
+LBFT    = libft.a
 
-PPTF	= ./ft_printf/libftprintf.a
+PPTF    = ./ft_printf/libftprintf.a
 
-PLBFT	= ./libft/libft.a
+PLBFT    = ./libft/libft.a
 
-all	: $(SRV) $(CLT) $(PPTF) $(PLBFT)
+all    : $(NAME) $(CLT)
 
-$(SRV)	: server.c $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(SRV)
+$(NAME)    : $(OBJ_SRV) $(PLBFT) $(PPTF)
+    cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(NAME)
 
-$(CLT) 	: client.c $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
+$(CLT)     : $(OBJ_CLT) $(PLBFT) $(PPTF)
+    cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
 
-%.o	: %.c Minitalk.h
-	cc $(FLAGS) -c $< -o $@
+%.o    : %.c
+    cc $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_SRV) $(OBJ_CLT) 
+    rm -rf $(OBJ_SRV) $(OBJ_CLT) 
 
-fclean:
-	rm -rf $(SRV) $(CLT)
-	
+fclean: clean
+    rm -rf $(NAME) $(CLT)
+    
 re: fclean all
 
-.PHONY: all clean fclean re $(PPTF) $(PLBFT)
+.PHONY: all clean fclean re
