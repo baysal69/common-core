@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Client.c                                           :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:43:57 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/16 01:55:35 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/16 03:01:12 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	main(int argc, char *argv[])
 	pid = ft_atoi(argv[1]);
 	sa.sa_flags = 0;
 	sa.sa_handler = ack_handler;
+	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	send_message(pid, argv[2]);
 }
