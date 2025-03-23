@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:43:57 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/23 17:00:58 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/23 17:41:23 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int	main(int argc, char *argv[])
 	struct sigaction	sa;
 
 	if (argc != 3)
+	{
 		ft_printf("Usage: ./Client [PID] [Message]\n");
+		exit(0);
+	}
 	pid = ft_atoi(argv[1]);
 	sa.sa_flags = 0;
 	sa.sa_handler = ack_handler;
