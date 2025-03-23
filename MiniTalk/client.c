@@ -6,17 +6,11 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:43:57 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/16 03:01:12 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/23 17:00:58 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf/ft_printf.h"
-#include "./libft/libft.h"
-#include <fcntl.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "Minitalk.h"
 
 volatile int	g_ack_received;
 
@@ -31,9 +25,21 @@ void	send_signal(int pid, int bit)
 {
 	g_ack_received = 0;
 	if (bit == 0)
-		kill(pid, SIGUSR1);
+	{
+		if (kill(pid, SIGUSR1) < 0)
+		{
+			ft_printf("Inputted PID is invalid: No such process\n");
+			exit(1);
+		}
+	}
 	else
-		kill(pid, SIGUSR2);
+	{
+		if (kill(pid, SIGUSR2) < 0)
+		{
+			ft_printf("Inputted PID is invalid: No such process\n");
+			exit(1);
+		}
+	}
 	while (!g_ack_received)
 		usleep(100);
 }
