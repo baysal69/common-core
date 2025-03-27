@@ -4,7 +4,7 @@ FLAGS     = -Wall -Wextra -Werror
 
 NAME     = client server
 
-NAME     = server 
+SRV     = server 
 
 CLT    = client
 
@@ -24,12 +24,12 @@ PPTF    = ./ft_printf/libftprintf.a
 
 PLBFT    = ./libft/libft.a
 
-all    : $(NAME) $(CLT)
+all    : $(SRV) $(CLT)
 
-$(NAME)    : $(OBJ_SRV) $(PLBFT) $(PPTF)
-	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(NAME)
+$(SRV)    : $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
+	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(SRV)
 
-$(CLT)     : $(OBJ_CLT) $(PLBFT) $(PPTF)
+$(CLT)     : $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
 	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
 
 %.o    : %.c

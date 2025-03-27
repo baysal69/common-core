@@ -6,19 +6,13 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:24:49 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/16 03:00:51 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/27 02:36:12 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf/ft_printf.h"
-#include "./libft/libft.h"
-#include <fcntl.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "Minitalk.h"
 
-int	g_current_client;
+int		g_current_client;
 
 void	text(int signum, siginfo_t *info, void *context)
 {
@@ -53,11 +47,12 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	sa.sa_flags = SA_SIGINFO | SA_RESTART;
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = text;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
+	printf("\033[1;35m	WELCOME TO MINITALK\033[0m\n");
 	ft_printf("The server PID is: %d\n", getpid());
 	while (1)
 		pause();
