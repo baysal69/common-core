@@ -12,7 +12,7 @@
 
 #include "Minitalk.h"
 
-int	g_current_client;
+int		g_current_client;
 
 void	text(int signum, siginfo_t *info, void *context)
 {

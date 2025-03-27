@@ -12,9 +12,9 @@
 
 #include "Minitalk.h"
 
-int	g_ack_received;
+int		g_ack_received;
 
-void ft_error(int code)
+void	ft_error(int code)
 {
 	if (code == 1)
 	{
@@ -55,10 +55,10 @@ int	send_signal(int pid, int bit)
 	}
 	while (!g_ack_received)
 	{
-		if (kill(pid,0) == -1)
+		if (kill(pid, 0) == -1)
 			ft_error(1);
 	}
-	return 1;
+	return (1);
 }
 
 void	send_message(int pid, char *message)
@@ -97,7 +97,7 @@ int	main(int argc, char *argv[])
 	if (argc != 3)
 		ft_error(3);
 	if (argv[1][0] < '0' || argv[1][0] > '9')
-		exit(0);
+		ft_error(2);
 	pid = ft_atoi(argv[1]);
 	if (pid < 0)
 		exit(0);
