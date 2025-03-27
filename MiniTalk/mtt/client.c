@@ -81,12 +81,6 @@ void	send_message(int pid, char *message)
 	}
 	if (done == 1)
 		ft_printf("\033[32mMessage sent successfully!\033[0m\n");
-	j = 7;
-	while (j >= 0)
-	{
-		send_signal(pid, 0);
-		j--;
-	}
 }
 
 int	main(int argc, char *argv[])
