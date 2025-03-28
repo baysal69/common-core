@@ -1,6 +1,6 @@
 CC     = cc
 
-FLAGS     = -Wall -Wextra -Werror
+FLAGS     = -Wall -Wextra -Werror -g
 
 NAME     = client server
 
@@ -24,7 +24,8 @@ PPTF    = ./ft_printf/libftprintf.a
 
 PLBFT    = ./libft/libft.a
 
-all    : $(SRV) $(CLT)
+
+all    : printf $(SRV) $(CLT) 
 
 $(SRV)    : $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
 	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(SRV)
@@ -32,14 +33,22 @@ $(SRV)    : $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
 $(CLT)     : $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
 	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
 
-%.o    : %.c
+printf	:
+	@make -C ./ft_printf
+	@make -C ./libft
+
+%.o    : %.c 
 	cc $(FLAGS) -c $< -o $@
 
 clean:
+	@make clean -C ./ft_printf
+	@make clean -C ./libft
 	rm -rf $(OBJ_SRV) $(OBJ_CLT) 
 
 fclean: clean
-	rm -rf $(NAME) $(CLT)
+	@make fclean -C ./ft_printf
+	@make fclean -C ./libft
+	rm -rf $(SRV) $(CLT)
     
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 01:43:57 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/27 03:00:24 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/28 01:47:08 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	send_message(int pid, char *message)
 int	main(int argc, char *argv[])
 {
 	long					pid;
-	struct sigaction	sa;
+	struct sigaction		sa;
 
 	if (argc != 3)
 		ft_error(3);
