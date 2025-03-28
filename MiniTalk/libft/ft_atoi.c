@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	res;
-	int	sign;
+	int		i;
+	long	res;
+	int		sign;
 
 	i = 0;
 	res = 0;
@@ -35,5 +35,7 @@ int	ft_atoi(const char *str)
 		res = (res * 10) + str[i] - 48;
 		i++;
 	}
+	if (res >= INT_MAX || res <= INT_MIN)
+		return (0);
 	return (res * sign);
 }

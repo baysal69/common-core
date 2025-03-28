@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <limits.h>
 
 int		ft_isdigit(int c);
 char	*ft_strtrim(char const *s1, char const *set);

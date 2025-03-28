@@ -85,7 +85,7 @@ void	send_message(int pid, char *message)
 
 int	main(int argc, char *argv[])
 {
-	int					pid;
+	long					pid;
 	struct sigaction	sa;
 
 	if (argc != 3)
@@ -93,8 +93,8 @@ int	main(int argc, char *argv[])
 	if (argv[1][0] < '0' || argv[1][0] > '9')
 		ft_error(2);
 	pid = ft_atoi(argv[1]);
-	if (pid < 0)
-		exit(0);
+	if (pid <= 0)
+		ft_error(2);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = ack_handler;
 	sigemptyset(&sa.sa_mask);
