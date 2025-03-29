@@ -6,7 +6,7 @@
 /*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:24:49 by waissi            #+#    #+#             */
-/*   Updated: 2025/03/27 02:36:12 by waissi           ###   ########.fr       */
+/*   Updated: 2025/03/29 09:18:51 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(void)
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	printf("\033[1;35m	WELCOME TO MINITALK\033[0m\n");
+	ft_printf("\033[1;35m	WELCOME TO MINITALK\033[0m\n");
 	ft_printf("The server PID is: %d\n", getpid());
 	while (1)
 		pause();

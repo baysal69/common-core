@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:46:28 by waissi            #+#    #+#             */
-/*   Updated: 2024/11/06 15:46:29 by waissi           ###   ########.fr       */
+/*   Created: 2025/03/29 01:42:20 by waissi            #+#    #+#             */
+/*   Updated: 2025/03/29 01:42:22 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "Minitalk.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
+	int		i;
+	long	res;
 
 	i = 0;
+	res = 0;
 	while (str[i])
 	{
+		if (!(str[i] >= '0' && str[i] <= '9') || i > 7)
+			return (0);
 		i++;
 	}
-	return (i);
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = (res * 10) + str[i] - 48;
+		i++;
+	}
+	return (res);
 }

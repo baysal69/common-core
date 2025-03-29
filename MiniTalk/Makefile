@@ -18,38 +18,34 @@ OBJ_CLT = $(SRC_CLT:.c=.o)
 
 PTF    = libftprintf.a
 
-LBFT    = libft.a
 
 PPTF    = ./ft_printf/libftprintf.a
-
-PLBFT    = ./libft/libft.a
 
 
 all    : printf $(SRV) $(CLT) 
 
-$(SRV)    : $(OBJ_SRV) $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) $(OBJ_SRV) $(PPTF) $(PLBFT) -o $(SRV)
+$(SRV)    : $(OBJ_SRV) $(PPTF) Minitalk.h
+	cc  $(FLAGS) $(OBJ_SRV) $(PPTF) -o $(SRV)
 
-$(CLT)     : $(OBJ_CLT) $(PLBFT) $(PPTF) Minitalk.h
-	cc $(FLAGS) $(OBJ_CLT) $(PPTF) $(PLBFT) -o $(CLT)
+$(CLT)     : $(OBJ_CLT) $(PPTF) Minitalk.h
+	cc $(FLAGS) $(OBJ_CLT) $(PPTF) ft_atoi.c -o $(CLT)
 
 printf	:
 	@make -C ./ft_printf
-	@make -C ./libft
 
 %.o    : %.c 
 	cc $(FLAGS) -c $< -o $@
 
 clean:
 	@make clean -C ./ft_printf
-	@make clean -C ./libft
 	rm -rf $(OBJ_SRV) $(OBJ_CLT) 
 
 fclean: clean
 	@make fclean -C ./ft_printf
-	@make fclean -C ./libft
 	rm -rf $(SRV) $(CLT)
-    
+
 re: fclean all
+
+.SECONDARY: $(OBJ_CLT) $(OBJ_SRV)
 
 .PHONY: all clean fclean re
