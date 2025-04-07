@@ -103,10 +103,21 @@ void draw_julia(t_mlx *mlx, double c_re, double c_im) {
         }
     }
 }
-int zbi(int code,t_mlx mlx)
+
+int zbi(int keycode, t_mlx *mlx)
 {
-	if (code == 53)
-		mlx_destroy_window(mlx.mlx_ptr, mlx.img.img);
+#include "../ft_printf/ft_printf.h"
+	if (keycode == 65307)
+	{
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img.img);
+		mlx_destroy_window(mlx->mlx_ptr,mlx->win_ptr);
+		mlx_destroy_display(mlx->mlx_ptr);
+		free(mlx->mlx_ptr);
+		exit(0);
+	}
+	else 
+	ft_printf("%d\n",keycode);
+	return 0;
 }
 int main(int ac, char **av)
 {
@@ -116,16 +127,15 @@ int main(int ac, char **av)
 	{
 		if (av[1][1] == 'm')
 		{
-		         t_mlx mlx;
-		         mlx.mlx_ptr = mlx_init();
-   		 	 mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, XMAX, YMAX, "Mandelbrot Set");
-			 mlx.img.img = mlx_new_image(mlx.mlx_ptr, XMAX, YMAX);
-    		         mlx.img.addr = mlx_get_data_addr(mlx.img.img, &mlx.img.bits_per_pixel, &mlx.img.line_length, &mlx.img.endian);
-
-        		draw_mandelbrot(&mlx);
-       			mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
-			mlx_hook(mlx.mlx_ptr,2,1L<<0,zbi,&mlx);
-       			mlx_loop(mlx.mlx_ptr);
+		    t_mlx mlx;
+		    mlx.mlx_ptr = mlx_init();
+   	    	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, XMAX, YMAX, "Mandelbrot Set");
+	    	mlx.img.img = mlx_new_image(mlx.mlx_ptr, XMAX, YMAX);
+            mlx.img.addr = mlx_get_data_addr(mlx.img.img, &mlx.img.bits_per_pixel, &mlx.img.line_length, &mlx.img.endian);
+        	draw_mandelbrot(&mlx);
+       		mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
+		mlx_hook(mlx.win_ptr, 2, 1L<<0, zbi, &mlx);
+            mlx_loop(mlx.mlx_ptr);
 		}
 		else
 			printf("zbi machi haka ki5dm had l9lawi\n");
@@ -146,7 +156,7 @@ int main(int ac, char **av)
 
                         draw_julia(&mlx,Ci,Cr);
                         mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
-			mlx_hook(mlx.mlx_ptr,2,1L<<0,zbi,&mlx);
+			mlx_hook(mlx.win_ptr,2,1L<<0,zbi,&mlx);
                         mlx_loop(mlx.mlx_ptr);
 			}
 		}

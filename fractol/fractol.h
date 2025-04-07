@@ -10,7 +10,9 @@
 #define XMAX 600
 #define YMAX 600
 #define SCALE 250
-#define MAX_ITER 50
+#define MAX_ITER 100
+#define MANDELBROT 1
+#define JULIA 2
 
 typedef struct  s_data {
     void    *img;
@@ -27,6 +29,9 @@ typedef struct s_mlx {
     double  zoom;
     double  offset_x;
     double  offset_y;
+    int		fractal;
+    double julia_c_re;
+    double julia_c_im;
 }   t_mlx;
 
 int	ft_strlen(const char *s);
