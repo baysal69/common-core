@@ -59,4 +59,3 @@ double	ft_atof(const char *str)
 	else
 		return (res + -res2);
 }
-
