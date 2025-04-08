@@ -2,6 +2,7 @@
 #define FRACTOL_H
 
 #include "../../minilibx-linux/mlx.h"
+#include "../ft_printf/ft_printf.h"
 #include "stdlib.h"
 #include <stdio.h>
 #include <unistd.h>
@@ -10,7 +11,7 @@
 #define XMAX 600
 #define YMAX 600
 #define SCALE 250
-#define MAX_ITER 100
+#define MAX_ITER 50
 #define MANDELBROT 1
 #define JULIA 2
 
