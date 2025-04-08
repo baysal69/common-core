@@ -6,7 +6,7 @@
 /*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:33:38 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/08 14:34:03 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/08 17:35:21 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,24 @@ void	handle_h(void)
 	ft_printf("-j		generate the Julia set\n");
 }
 
+void	check_fail(t_mlx *mlx)
+{
+	if (mlx->mlx_ptr == NULL)
+		exit(1);
+	if (mlx->win_ptr == NULL)
+	{
+		mlx_destroy_display(mlx->mlx_ptr);
+		free(mlx->mlx_ptr);
+		exit(1);
+	}
+	if (mlx->img.img == NULL)
+	{
+		mlx_destroy_display(mlx->mlx_ptr);
+		free(mlx->mlx_ptr);
+		exit(1);
+	}
+}
+
 void	handle_m(char **av)
 {
 	t_mlx	mlx;
@@ -32,6 +50,7 @@ void	handle_m(char **av)
 		mlx.img.img = mlx_new_image(mlx.mlx_ptr, XMAX, YMAX);
 		mlx.img.addr = mlx_get_data_addr(mlx.img.img, &mlx.img.bits_per_pixel,
 				&mlx.img.line_length, &mlx.img.endian);
+		check_fail(&mlx);
 		mlx.zoom = 1.0;
 		mlx.offset_x = 0;
 		mlx.offset_y = 0;
@@ -59,6 +78,7 @@ void	handle_j(char **av)
 		mlx.img.img = mlx_new_image(mlx.mlx_ptr, XMAX, YMAX);
 		mlx.img.addr = mlx_get_data_addr(mlx.img.img, &mlx.img.bits_per_pixel,
 				&mlx.img.line_length, &mlx.img.endian);
+		check_fail(&mlx);
 		mlx.zoom = 1.0;
 		mlx.offset_x = 0;
 		mlx.offset_y = 0;
