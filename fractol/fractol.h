@@ -6,7 +6,7 @@
 /*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:29:45 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/08 14:53:39 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/08 16:56:09 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define XMAX 600
 # define YMAX 600
 # define SCALE 250
-# define MAX_ITER 200
+# define MAX_ITER 42 
 # define MANDELBROT 1
 # define JULIA 2
 
