@@ -44,7 +44,14 @@ int	ft_atoi(const char *nptr)
 		if (num * sign > 2147483647)
 			return (-1);
 		if (num * sign < -2147483648)
+		{
 			return (0);
+		}
+	}
+	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+	{
+		exit(0);
+		handle_h();
 	}
 	return (num * sign);
 }
