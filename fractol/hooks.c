@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: baysal <baysal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:33:04 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/08 14:33:05 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:48:35 by baysal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	zbi(int keycode, t_mlx *mlx)
+int	free_win(int keycode, t_mlx *mlx)
 {
 	if (keycode == 65307)
 	{

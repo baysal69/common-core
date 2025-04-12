@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: baysal <baysal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:33:38 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/08 17:35:21 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:48:35 by baysal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	handle_m(char **av)
 		mlx.fractal = MANDELBROT;
 		draw_mandelbrot(&mlx);
 		mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
-		mlx_hook(mlx.win_ptr, 2, 1L << 0, zbi, &mlx);
+		mlx_hook(mlx.win_ptr, 2, 1L << 0, free_win, &mlx);
 		mlx_hook(mlx.win_ptr, 17, 0, sd, &mlx);
 		mlx_mouse_hook(mlx.win_ptr, mouse_zoom, &mlx);
 		mlx_loop(mlx.mlx_ptr);
@@ -87,7 +87,7 @@ void	handle_j(char **av)
 		mlx.fractal = JULIA;
 		draw_julia(&mlx, ci, cr);
 		mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
-		mlx_hook(mlx.win_ptr, 2, 1L << 0, zbi, &mlx);
+		mlx_hook(mlx.win_ptr, 2, 1L << 0, free_win, &mlx);
 		mlx_hook(mlx.win_ptr, 17, 0, sd, &mlx);
 		mlx_mouse_hook(mlx.win_ptr, mouse_zoom, &mlx);
 		mlx_loop(mlx.mlx_ptr);

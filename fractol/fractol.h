@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: baysal <baysal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:29:45 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/08 16:56:09 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:48:35 by baysal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define FRACTOL_H
 
 # include "./ft_printf/ft_printf.h"
-# include "/usr/include/minilibx-linux/mlx.h"
+# include "../../minilibx-linux/mlx.h"
 # include "stdlib.h"
-# include <math.h>
 # include <stdio.h>
 # include <unistd.h>
 
@@ -60,7 +59,7 @@ void		draw_mandelbrot(t_mlx *mlx);
 int			julia(double z_re, double z_im, double c_re, double c_im);
 void		draw_julia(t_mlx *mlx, double c_re, double c_im);
 int			sd(void *code);
-int			zbi(int keycode, t_mlx *mlx);
+int			free_win(int keycode, t_mlx *mlx);
 int			mouse_zoom(int button, int x, int y, t_mlx *mlx);
 void		handle_h(void);
 void		handle_m(char **av);
