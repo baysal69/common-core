@@ -58,7 +58,7 @@ void	handle_m(char **av)
 		draw_mandelbrot(&mlx);
 		mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
 		mlx_hook(mlx.win_ptr, 2, 1L << 0, free_win, &mlx);
-		mlx_hook(mlx.win_ptr, 17, 0, sd, &mlx);
+		mlx_hook(mlx.win_ptr, 17, 0, ft_close, &mlx);
 		mlx_mouse_hook(mlx.win_ptr, mouse_zoom, &mlx);
 		mlx_loop(mlx.mlx_ptr);
 	}
@@ -88,7 +88,7 @@ void	handle_j(char **av)
 		draw_julia(&mlx, ci, cr);
 		mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img, 0, 0);
 		mlx_hook(mlx.win_ptr, 2, 1L << 0, free_win, &mlx);
-		mlx_hook(mlx.win_ptr, 17, 0, sd, &mlx);
+		mlx_hook(mlx.win_ptr, 17, 0, ft_close, &mlx);
 		mlx_mouse_hook(mlx.win_ptr, mouse_zoom, &mlx);
 		mlx_loop(mlx.mlx_ptr);
 	}

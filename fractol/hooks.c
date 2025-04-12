@@ -47,7 +47,7 @@ int	mouse_zoom(int button, int x, int y, t_mlx *mlx)
 	return (0);
 }
 
-int	sd(void *code)
+int	ft_close(void *code)
 {
 	t_mlx	*mlx;
 

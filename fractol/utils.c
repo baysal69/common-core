@@ -6,7 +6,7 @@
 /*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:29:51 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/08 14:32:35 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/12 21:29:41 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,19 @@ int	ft_atoi(const char *nptr)
 	sign = 1;
 	num = 0;
 	while ((nptr[i] >= '\t' && nptr[i] <= '\r') || nptr[i] == ' ')
-		nptr++;
+		i++;
+	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+		exit(0);
 	if (nptr[i] == '-')
 		sign = sign * -1;
 	if (nptr[i] == '+' || nptr[i] == '-')
-		nptr++;
+		i++;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		num = (num * 10) + nptr[i] - '0';
-		nptr++;
-		if (num * sign > 2147483647)
-			return (-1);
-		if (num * sign < -2147483648)
-		{
-			return (0);
-		}
-	}
-	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
-	{
-		exit(0);
-		handle_h();
+		i++;
+		if (num * sign > 2147483647 || num * sign < -2147483648)
+			exit(0);
 	}
 	return (num * sign);
 }
@@ -73,6 +66,12 @@ double	ft_atof(const char *str)
 	len = ft_strlen(c);
 	while (len--)
 		res2 /= 10;
+	while (*c)
+	{
+		if (!(*c >= '0' && *c <= '9'))
+			exit(0);
+		c++;
+	}
 	if (res >= 0)
 		return (res + res2);
 	else

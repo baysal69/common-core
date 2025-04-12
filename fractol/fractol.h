@@ -6,7 +6,7 @@
 /*   By: baysal <baysal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:29:45 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/12 17:48:35 by baysal           ###   ########.fr       */
+/*   Updated: 2025/04/12 21:30:39 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 
 # include "./ft_printf/ft_printf.h"
-# include "../../minilibx-linux/mlx.h"
+# include "/usr/include/minilibx-linux/mlx.h"
 # include "stdlib.h"
 # include <stdio.h>
 # include <unistd.h>
@@ -58,7 +58,7 @@ int			coloring(int iter);
 void		draw_mandelbrot(t_mlx *mlx);
 int			julia(double z_re, double z_im, double c_re, double c_im);
 void		draw_julia(t_mlx *mlx, double c_re, double c_im);
-int			sd(void *code);
+int			ft_close(void *code);
 int			free_win(int keycode, t_mlx *mlx);
 int			mouse_zoom(int button, int x, int y, t_mlx *mlx);
 void		handle_h(void);
