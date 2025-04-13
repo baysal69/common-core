@@ -14,7 +14,7 @@
 
 int	ft_strlen(const char *s)
 {
-	size_t			i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -49,28 +49,17 @@ int	ft_atoi(const char *nptr)
 	return (num * sign);
 }
 
-/*double	ft_atof(const char *str)
+double	ft_atof(const char *str)
 {
 	double	res;
 	double	res2;
 	char	*c;
 	int		len;
-	int sign;
 
 	c = (char *)str;
-	sign = 1;
+	res = (double)ft_atoi(c);
 	while (*c && *c != '.')
 		c++;
-	if (*c == '-')
-    	{
-       		 sign *= -1;
-       		 c++;
-    	}
-   	else if (*c == '+')
-    	{
-     	  	 c++;
-    	}
-	res = (double)ft_atoi(c);
 	if (*c == '.')
 	{
 		c++;
@@ -78,39 +67,10 @@ int	ft_atoi(const char *nptr)
 		len = ft_strlen(c);
 		while (len--)
 			res2 /= 10;
-		while (*c)
-		{
-			if (!(*c >= '0' && *c <= '9'))
-				exit(0);
-			c++;
-		}
+		if (res > 0)
+			return (res + res2);
+		else
+			return (res - res2);
 	}
-	else
-		return (sign * res);
-	return (sign * (res + res2));
-}*/
-double ft_atof(const char *str) {
-    float result = 0.0, fraction = 0.0;
-    int sign = 1, divisor = 1;
-
-    // Skip leading whitespace
-    while (*str <= 32)
-	    str++;
-    if (*str == '-' || *str == '+')
-    {
-	    if (*str == '-')
-	    	sign = *-1
-	    str++;
-    }
-
-    // Process integer part
-    while (*str >= '0' && *str <= '9') result = result * 10 + (*str++ - '0');
-    if (*str == '.') {
-        str++;
-        while (*str >= '0' && *str <= '9') {
-            fraction = fraction * 10 + (*str++ - '0');
-            divisor *= 10;
-        }
-    }
-    return sign * (result + fraction / divisor);
+	return (res);
 }
