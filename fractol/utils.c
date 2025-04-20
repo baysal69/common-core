@@ -6,7 +6,7 @@
 /*   By: waissi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:29:51 by waissi            #+#    #+#             */
-/*   Updated: 2025/04/13 04:29:21 by waissi           ###   ########.fr       */
+/*   Updated: 2025/04/13 23:55:52 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,29 @@ int	ft_atoi(const char *nptr)
 	return (num * sign);
 }
 
+static int	check_negative(char *c)
+{
+	if (*c == '-' || *c == '+')
+	{
+		if (*c == '-')
+			return (-1);
+		return (1);
+	}
+	return (1);
+}
+
 double	ft_atof(const char *str)
 {
 	double	res;
 	double	res2;
 	char	*c;
 	int		len;
+	int		sign;
 
 	c = (char *)str;
 	res = (double)ft_atoi(c);
-	while (*c && *c != '.')
+	sign = check_negative(c);
+	while (*c > 32 && *c != '.')
 		c++;
 	if (*c == '.')
 	{
@@ -67,10 +80,11 @@ double	ft_atof(const char *str)
 		len = ft_strlen(c);
 		while (len--)
 			res2 /= 10;
-		if (res > 0)
-			return (res + res2);
+		if (res >= 0)
+			return ((res + res2) * sign);
 		else
-			return (res - res2);
+			return ((res - res2) * sign);
 	}
-	return (res);
+	else
+		return (res * sign);
 }
