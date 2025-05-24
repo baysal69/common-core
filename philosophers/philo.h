@@ -28,6 +28,23 @@ typedef struct s_content
 	pthread_mutex_t print;
 } t_content;
 
+typedef struct s_pstats
+{
+	pthread_t thread;
+	int id;
+	int eating;
+	int full;
+	int turn;
+	size_t lastmeal;
+	int tthink;
+	t_content *in;
+	pthread_mutex_t *meal_lock;
+	pthread_mutex_t *lfork;
+	pthread_mutex_t *rfork;
+}	t_pstats;
+
+void give_philos(t_pstats *p, t_lock *m, t_content *curr, t_lock *f );
+int init_thrds(t_pstats *p, t_content *curr);
 long    ft_atoi(const char *str);
 size_t get_time();
 void *sleeping();
