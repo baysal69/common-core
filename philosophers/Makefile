@@ -4,12 +4,13 @@ SRC	 	= philo.c utils.c states.c checks.c inits.c
 
 OBJ 	= $(SRC:.c=.o)
 
-#FLAGS 	= -Wall -Wextra -Werror
+#FLAGS 	= -Wall -Wextra -Werror -fsanitize=thread -g
+# FLAGS 	= -fsanitize=thread -g
 
 all 	: $(NAME)
 
 $(NAME) : $(OBJ)
-	cc $(FLAGS) $(SRC) -o $(NAME)
+	cc $(FLAGS)  $(SRC) -o $(NAME)
 
 clean 	:
 	rm -rf $(OBJ)

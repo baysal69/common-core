@@ -23,26 +23,55 @@ int check_full(t_pstats *p, t_content *curr)
 	}
 	return 0;
 }
+int end_death(t_pstats *p, t_content *curr)
+{
+	int i = 0;
+	size_t time = get_time();
+	while (i < curr->nphilos)
+	{
+		pthread_mutex_lock(p[i].meal_lock);
+		  if (time - p[i].lastmeal >= curr->tdie)
+  	    {
+  	      pthread_mutex_lock(&curr->death_lock);
+  	      curr->death = 1;
+  	      pthread_mutex_unlock(&curr->death_lock);
+  	      printf("Philosopher %d died\n", p[i].id);
+  	      pthread_mutex_unlock(p[i].meal_lock);
+  	      return 1;
+  	    }
+		else
+  	    	pthread_mutex_unlock(p[i].meal_lock);
+  	    i++;
+	}
+	return 0;
+}
 
 void *monitoring(void *arg)
 {
 	t_pstats *p;
-	t_content *in;
-	int p_death = 0;
+	t_content *curr;
 	p = (t_pstats *)arg;
-	in = p->in;
-	while (alive(p->in))
+	curr = p->in;
+	while (is_alive(p->in))
 	{
-		
-	}
+		if(check_full(p,curr))
+			break;
+		if (end_death(p,curr))
+   			break;
+	}	
 }
 
 size_t get_time()
 {
 	typedef struct timeval		t_timeval;
 	t_timeval tv;
-	gettimeofday(&tv,NULL);
+	if (gettimeofday(&tv,NULL))
+	{
+		printf("gettimeofday failed\n");
+		exit(1);
+	}
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	
 }
 
 int main(int ac,char *av[])
@@ -58,6 +87,7 @@ int main(int ac,char *av[])
 		init_mtx(f,m,&curr);
 		give_philos(p,m,&curr,f);
 		int i = 0;
+		init_thrds(p,&curr);
 		// while (i < philos)
 		// {
 		// 	pthread_join(threads[i],NULL);

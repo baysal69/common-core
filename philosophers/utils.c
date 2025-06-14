@@ -1,5 +1,13 @@
 #include "philo.h"
 
+void ft_usleep(size_t ms)
+{
+        long start;
+        start = get_time();
+        while ((get_time() - start) <= ms)
+                asm volatile ("pause");        
+}
+
 long    ft_atoi(const char *str)
 {
         int     i;

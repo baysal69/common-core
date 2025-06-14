@@ -55,6 +55,12 @@ size_t get_time();
 int checkarg(char *str);
 void error(int code);
 int check_args(int ac, char *av[]);
+int end_death(t_pstats *p, t_content *curr);
+int is_alive(t_content *curr);
+int check_full(t_pstats *p, t_content *curr);
+void *monitoring(void *arg);
+void *routine(void *arg);
+void ft_usleep(size_t ms);
 
 
 

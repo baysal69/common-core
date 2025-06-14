@@ -30,3 +30,4 @@ int init_thrds(t_pstats *p, t_content *curr)
 	}
 	return 1;
 }
+
