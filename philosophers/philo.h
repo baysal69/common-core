@@ -47,8 +47,9 @@ void give_philos(t_pstats *p, t_lock *m, t_content *curr, t_lock *f );
 int init_thrds(t_pstats *p, t_content *curr);
 long    ft_atoi(const char *str);
 size_t get_time();
-void *sleeping();
-void *thinking();
+void sleeping(t_pstats *p);
+void thinking(t_pstats *p);
+int eating(t_pstats *p);
 void init_mtx(t_lock *f, t_lock *m, t_content *curr);
 void give_params(t_content *it, int ac, char **av);
 size_t get_time();
@@ -61,6 +62,11 @@ int check_full(t_pstats *p, t_content *curr);
 void *monitoring(void *arg);
 void *routine(void *arg);
 void ft_usleep(size_t ms);
+void put_message(char *s, t_pstats *p);
+void put_time(t_content curr);
+void put_dead(t_content *curr, int i);
+void f_lock(t_pstats *p);
+void meal_update(t_pstats *p);
 
 
 

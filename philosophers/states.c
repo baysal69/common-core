@@ -1,21 +1,35 @@
 #include "philo.h"
 
-void *thinking()
+void thinking(t_pstats *p)
 {
-	// pthread_mutex_lock(&lock);
-	printf("thinking...\n");
-	ft_usleep(1100);
-	// pthread_mutex_unlock(&lock);
-	return NULL;
+	put_message("thinking...\n", p);
+	ft_usleep(5);
 }
 
-void *sleeping()
+void sleeping(t_pstats *p)
 {
-	// pthread_mutex_lock(&lock);
-	printf("sleeping...\n");
-	ft_usleep(1000);
-	// pthread_mutex_unlock(&lock);
-	return NULL;
+	put_message("sleeping...\n",p);
+	ft_usleep(p->in->tsleep);
+}
+
+int eating(t_pstats *p)
+{
+	f_lock(p);
+	meal_update(p);
+	put_message("started eating", p);
+	ft_usleep(p->in->teat);
+	pthread_mutex_lock(p->meal_lock);
+	p->eating = 0;
+	pthread_mutex_unlock(p->meal_lock);
+	pthread_mutex_unlock(p->rfork);
+	pthread_mutex_unlock(p->lfork);
+	if (p->in->counter[p->id] == p->in->nmeals)
+	{
+		pthread_mutex_lock(p->meal_lock);
+		p->full = 1;
+		return (pthread_mutex_unlock(p->meal_lock), 1);
+	}
+	return 0;
 }
 
 int is_alive (t_content *curr)
@@ -42,7 +56,37 @@ void *routine(void *arg)
   ft_usleep(curr->tthink * 1000);
  while (is_alive(curr))
  {
- 
+	if (eating(p))
+		break;
+	sleeping(p);
+	thinking(p);
  }
  return NULL;
+}
+
+void f_lock(t_pstats *p)
+{
+	if(p->lfork < p->rfork)
+	{
+		pthread_mutex_lock(p->lfork);
+		put_message("has taken the left fork",p);
+		pthread_mutex_lock(p->rfork);
+		put_message("has taken the right fork",p);
+	}
+	else
+	{
+		pthread_mutex_lock(p->rfork);
+		put_message("has taken the right fork",p);
+		pthread_mutex_lock(p->lfork);
+		put_message("has taken the left fork",p);
+	}
+}
+
+void meal_update(t_pstats *p)
+{
+	pthread_mutex_lock(p->meal_lock);
+	p->lastmeal = get_time();
+	p->eating = 1;
+	p->in->counter[p->id]++;
+	pthread_mutex_unlock(p->meal_lock);
 }

@@ -33,3 +33,31 @@ long    ft_atoi(const char *str)
         }
         return (res * sign);
 }
+
+void put_dead(t_content *curr, int i)
+{
+        pthread_mutex_lock(&curr->print);
+        put_time(*curr);
+        printf("lfilasof %i mat layr7mo\n",i);
+        pthread_mutex_unlock(&curr->print);
+}
+
+void put_time(t_content curr)
+{
+        size_t time;
+        time = get_time() - curr.start;
+        printf("%lu ", time);
+}
+
+void put_message(char *s, t_pstats *p)
+{
+        pthread_mutex_lock(&p->in->print);
+        pthread_mutex_lock(p->meal_lock);
+        if (is_alive(p->in) == 1)
+        {
+                put_time(*p->in);
+                printf("The philosopher %d is %s\n", p->id, s);
+        }
+        pthread_mutex_unlock(&p->in->print);
+        pthread_mutex_unlock(p->meal_lock);
+}
