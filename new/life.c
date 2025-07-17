@@ -135,14 +135,14 @@ int	end_death(t_pstats *p, t_content *curr)
         pthread_mutex_lock(p[i].meal_lock);
         if (!p[i].eating && (time - p[i].lastmeal) >= tdie)
         {
-            pthread_mutex_unlock(p[i].meal_lock);
-            pthread_mutex_lock(&curr->death_lock);
+			// pthread_mutex_lock(&curr->death_lock);
             if (curr->death == 0)
             {
-                curr->death = 1;
+				curr->death = 1;
                 put_dead(curr, p[i].id);
             }
-            pthread_mutex_unlock(&curr->death_lock);
+            // pthread_mutex_unlock(&curr->death_lock);
+			pthread_mutex_unlock(p[i].meal_lock);
             return (1);
         }
         pthread_mutex_unlock(p[i].meal_lock);
