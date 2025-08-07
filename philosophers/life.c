@@ -6,7 +6,7 @@
 /*   By: sel-khao <sel-khao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 09:41:04 by sel-khao          #+#    #+#             */
-/*   Updated: 2025/07/17 11:15:59 by sel-khao         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:48:35 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*routine(void *arg)
 	if (nphilos == 1)
 		return (is_one(p, tdie));
 	if (p->id % 2 == 0)
-		ft_usleep(teat * 0.9);
+		ft_usleep(teat);
 	life_cycle(p);
 	return (NULL);
 }

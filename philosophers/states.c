@@ -6,7 +6,7 @@
 /*   By: sel-khao <sel-khao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:14:32 by sel-khao          #+#    #+#             */
-/*   Updated: 2025/07/17 10:13:12 by sel-khao         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:48:07 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	thinking(t_pstats *p)
 {
 	put_message("is thinking...\n", p);
+	if (p->in->nphilos % 2 != 0)
+		ft_usleep(p->in->teat);
 	ft_usleep(5);
 }
 
