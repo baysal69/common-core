@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-khao <sel-khao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:35:36 by sel-khao          #+#    #+#             */
-/*   Updated: 2025/07/14 09:35:36 by sel-khao         ###   ########.fr       */
+/*   Created: 2025/07/14 09:35:36 by waissi            #+#    #+#             */
+/*   Updated: 2025/07/14 09:35:36 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,8 @@ void	put_dead(t_content *curr, int i)
 	pthread_mutex_unlock(&curr->death_lock);
 	pthread_mutex_lock(&curr->print);
 	time = get_time() - curr->start;
-	printf("%lu the philosophers %i died\n", time, i);
+	printf("%lu %i died\n", time, i);
 	pthread_mutex_unlock(&curr->print);
-}
-
-void	put_time(t_content curr)
-{
-	size_t	time;
-
-	time = get_time() - curr.start;
-	printf("%lu ", time);
 }
 
 void	put_message(char *s, t_pstats *p)
@@ -81,7 +73,23 @@ void	put_message(char *s, t_pstats *p)
 		return ;
 	}
 	time = (get_time() - p->in->start);
-	printf("%lu the philosopher %d %s", time, p->id, s);
+	printf("%lu %d %s", time, p->id, s);
 	pthread_mutex_unlock(&p->in->death_lock);
 	pthread_mutex_unlock(&p->in->print);
+}
+
+int	ft_parse(t_pstats **p, pthread_mutex_t **forks, t_content curr)
+{
+	int	i;
+
+	*p = malloc(sizeof(t_pstats) * curr.nphilos);
+	*forks = malloc(sizeof(t_lock) * curr.nphilos);
+	i = 0;
+	while (i < curr.nphilos)
+	{
+		if (pthread_mutex_init(&(*forks)[i], NULL) != 0)
+			error(4);
+		i++;
+	}
+	return (0);
 }

@@ -1,14 +1,14 @@
 NAME 	= philo
 SRC	 	= philo.c life.c utils.c states.c checks.c inits.c clean.c
 OBJ 	= $(SRC:.c=.o)
-CC 		= cc -g -fsanitize=undefined -pthread
-CFLAGS	= -Wall -Wextra -Werror -g3
+CC 		= cc -fsanitize=undefined -pthread
+CFLAGS	= -Wall -Wextra -Werror
 
 all 	: $(NAME)
 
 $(NAME) : $(OBJ)
 		@$(CC) $(CFLAGS)  $(OBJ) -o $(NAME)
-		@echo " ╰┈➤philophers are ready"
+		@echo " ╰┈➤$(NAME) is ready"
 
 %.o: %.c
 		@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null

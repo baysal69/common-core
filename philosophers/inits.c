@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-khao <sel-khao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:04:20 by sel-khao          #+#    #+#             */
-/*   Updated: 2025/07/14 09:04:20 by sel-khao         ###   ########.fr       */
+/*   Created: 2025/07/14 09:04:20 by waissi            #+#    #+#             */
+/*   Updated: 2025/08/10 19:17:08 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ void	init_content(t_content *it, int ac, char **av)
 	it->tdie = ft_atoi(av[2]);
 	it->teat = ft_atoi(av[3]);
 	it->tsleep = ft_atoi(av[4]);
-	// if (it->nphilos % 2 == 1)
-	// 	it->tthink = (it->teat * 2) - it->tsleep;
-	// else
-	// 	it->tthink = it->teat - it->tsleep;
-	// if (it->tthink <= 0)
-	// 	it->tthink = 1;
 	it->full = 0;
 	it->death = 0;
 	it->start = get_time();
@@ -38,7 +32,7 @@ void	init_content(t_content *it, int ac, char **av)
 		it->counter[i++] = 0;
 }
 
-void	init_pstats(t_pstats *p, t_content *curr, t_lock *forks)
+int	init_pstats(t_pstats *p, t_content *curr, t_lock *forks)
 {
 	int		i;
 	t_lock	*meal_locks;
@@ -48,7 +42,7 @@ void	init_pstats(t_pstats *p, t_content *curr, t_lock *forks)
 	while (++i < curr->nphilos)
 	{
 		if (pthread_mutex_init(&meal_locks[i], NULL) != 0)
-			error(4);
+			return (4);
 	}
 	i = -1;
 	while (++i < curr->nphilos)
@@ -57,40 +51,40 @@ void	init_pstats(t_pstats *p, t_content *curr, t_lock *forks)
 		p[i].lastmeal = curr->start;
 		p[i].full = 0;
 		p[i].eating = 0;
-		p[i].turn = 0;
 		p[i].in = curr;
 		p[i].lfork = &forks[i];
 		p[i].rfork = &forks[(i + 1) % curr->nphilos];
 		p[i].meal_lock = &meal_locks[i];
 	}
-	init_thrds(curr, p);
+	return (init_thrds(curr, p));
 }
 
-void	init_thrds(t_content *curr, t_pstats *p)
+int	init_thrds(t_content *curr, t_pstats *p)
 {
 	int	i;
 
 	i = -1;
 	if (pthread_mutex_init(&curr->print, NULL) != 0)
-		error (4);
+		return (4);
 	if (pthread_mutex_init(&curr->death_lock, NULL) != 0)
-		error (4);
+		return (4);
 	curr->start = get_time();
 	while (++i < curr->nphilos)
 		p[i].lastmeal = curr->start;
 	i = -1;
 	if (pthread_create(&curr->monitor, NULL, monitoring, p) != 0)
-		error(5);
+		return (5);
 	i = -1;
 	while (++i < curr->nphilos)
 	{
 		if (pthread_create(&p[i].philo, NULL, routine, &p[i]) != 0)
-			error (5);
+			return (5);
 	}
 	i = -1;
 	while (++i < curr->nphilos)
 		pthread_join(p[i].philo, NULL);
 	pthread_join(curr->monitor, NULL);
+	return (0);
 }
 
 void	philo_born(t_pstats *p, int *nphilos, size_t *tdie, size_t *teat)

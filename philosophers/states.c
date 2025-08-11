@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   states.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-khao <sel-khao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:14:32 by sel-khao          #+#    #+#             */
+/*   Created: 2025/07/14 09:14:32 by waissi            #+#    #+#             */
 /*   Updated: 2025/08/07 16:48:07 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 
 void	thinking(t_pstats *p)
 {
-	put_message("is thinking...\n", p);
+	put_message("is thinking\n", p);
 	if (p->in->nphilos % 2 != 0)
 		ft_usleep(p->in->teat);
 	ft_usleep(5);
@@ -33,7 +33,7 @@ int	eating(t_pstats *p)
 	stop = 0;
 	f_lock(p);
 	meal_update(p);
-	put_message("started eating\n", p);
+	put_message("is eating\n", p);
 	ft_usleep(p->in->teat);
 	pthread_mutex_lock(p->meal_lock);
 	p->eating = 0;
@@ -73,6 +73,6 @@ void	meal_update(t_pstats *p)
 	pthread_mutex_lock(p->meal_lock);
 	p->lastmeal = get_time();
 	p->eating = 1;
-	p->in->counter[p->id -1]++;
+	p->in->counter[p->id - 1]++;
 	pthread_mutex_unlock(p->meal_lock);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-khao <sel-khao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 09:02:45 by sel-khao          #+#    #+#             */
-/*   Updated: 2025/07/14 09:02:45 by sel-khao         ###   ########.fr       */
+/*   Created: 2025/07/14 09:02:45 by waissi            #+#    #+#             */
+/*   Updated: 2025/07/14 09:02:45 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	check_args(int ac, char **av)
 	i = 1;
 	nb = 0;
 	if (ac < 5 || ac > 6)
-		error(1);
+		return (1);
 	while (i < ac)
 	{
 		if (!checkarg(av[i]))
-			error(2);
+			return (2);
 		i++;
 	}
 	i = 1;
@@ -61,10 +61,10 @@ int	check_args(int ac, char **av)
 	{
 		nb = ft_atoi(av[i]);
 		if (!nb || nb < INT_MIN || nb > INT_MAX)
-			error(2);
+			return (2);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int	checkarg(char *str)
@@ -83,31 +83,29 @@ int	checkarg(char *str)
 	return (1);
 }
 
-void	error(int code)
+int	error(int code)
 {
 	if (code == 1)
 	{
-		printf(RED "invalid arguments\n" RESET);
-		exit(1);
+		return (printf(RED "invalid arguments\n" RESET), -1);
+		return (-1);
 	}
 	else if (code == 2)
 	{
-		printf (RED "invalid arguments content\n"RESET);
-		exit(1);
+		printf(RED "invalid arguments content\n" RESET);
+		return (-1);
 	}
 	else if (code == 3)
 	{
 		printf(RED "invalid number of meals\n" RESET);
-		exit(1);
+		return (-1);
 	}
 	else if (code == 4)
 	{
 		printf(RED "mutex initialization failed\n" RESET);
-		exit(1);
+		return (-1);
 	}
 	else if (code == 5)
-	{
-		printf(RED "threads creation failed\n" RESET);
-		exit(1);
-	}
+		return (printf(RED "threads creation failed\n" RESET), -1);
+	return (0);
 }
