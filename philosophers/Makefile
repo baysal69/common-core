@@ -11,7 +11,7 @@ $(NAME) : $(OBJ)
 		@echo " ╰┈➤$(NAME) is ready"
 
 %.o: %.c
-		@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null
+		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 		@rm -f $(OBJ)

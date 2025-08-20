@@ -88,7 +88,7 @@ int	ft_parse(t_pstats **p, pthread_mutex_t **forks, t_content curr)
 	while (i < curr.nphilos)
 	{
 		if (pthread_mutex_init(&(*forks)[i], NULL) != 0)
-			error(4);
+			return (4);
 		i++;
 	}
 	return (0);
