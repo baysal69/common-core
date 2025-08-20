@@ -18,7 +18,7 @@ void	ft_usleep(long long ms)
 
 	start = get_time();
 	while ((get_time() - start) < ms)
-		usleep(50);
+		asm volatile ("pause");
 }
 
 long	ft_atoi(const char *str)
