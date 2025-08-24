@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aclakhda <aclakhda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 11:22:54 by aclakhda          #+#    #+#             */
-/*   Updated: 2024/12/13 15:30:00 by aclakhda         ###   ########.fr       */
+/*   Created: 2024/08/29 11:22:54 by waissi          #+#    #+#             */
+/*   Updated: 2024/12/13 15:30:00 by waissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ void	child_2(t_shell *shell, int fd[])
 	stdin_copy = dup(STDIN);
 	close(fd[1]);
 	shell->tree = shell->tree->right;
-    if ((shell->herdoc && shell->herdoc->herdoc) > 0 ) {
-        // dup2(shell->herdoc->fd, STDIN);
-        // close(shell->herdoc->fd);
-    } else {
-        dup2(fd[0], STDIN);
-        close(fd[0]);
-    } 
+	if ((shell->herdoc && shell->herdoc->herdoc) > 0)
+	{
+		dup2(shell->herdoc->fd, STDIN);
+		close(shell->herdoc->fd);
+	}
+	else
+	{
+		dup2(fd[0], STDIN);
+		close(fd[0]);
+	}
 	executing(shell);
 	shell->tree = tmp;
 	dup2(stdin_copy, STDIN);
