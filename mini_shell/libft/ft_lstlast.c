@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysemlali & aclakhda <ysemlali & aclackd    +#+  +:+       +#+        */
+/*   By: ysemlali & waissi <ysemlali & aclackd    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:35:48 by ysemlali          #+#    #+#             */
 /*   Updated: 2024/09/02 23:37:56 by ysemlali &       ###   ########.fr       */

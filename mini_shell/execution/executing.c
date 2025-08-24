@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aclakhda <aclakhda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 17:26:56 by aclakhda          #+#    #+#             */
-/*   Updated: 2024/11/21 22:17:16 by aclakhda         ###   ########.fr       */
+/*   Created: 2024/08/02 17:26:56 by waissi          #+#    #+#             */
+/*   Updated: 2024/11/21 22:17:16 by waissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	ft_exec_cmd(t_shell *shell)
 		unset(shell);
 	else if (ft_strcmp(shell->tree->op, "exit") == 0)
 		ft_exit(shell, 1, 1);
-	else if (ft_strcmp(shell->tree->op, "bocchi") == 0)
-		bocchi(shell);
 }
 
 void	executing(t_shell *shell)

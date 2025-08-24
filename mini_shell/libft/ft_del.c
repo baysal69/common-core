@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_del.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysemlali & aclakhda <ysemlali & aclackd    +#+  +:+       +#+        */
+/*   By: ysemlali & waissi <ysemlali & aclackd    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:36:40 by ysemlali &        #+#    #+#             */
 /*   Updated: 2024/09/02 23:36:41 by ysemlali &       ###   ########.fr       */

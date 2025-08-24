@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numvalid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysemlali & aclakhda <ysemlali & aclackd    +#+  +:+       +#+        */
+/*   By: ysemlali & waissi <ysemlali & aclackd    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 22:33:45 by ysemlali &        #+#    #+#             */
 /*   Updated: 2024/08/24 23:12:25 by ysemlali &       ###   ########.fr       */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysemlali <ysemlali@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:36:23 by ysemlali          #+#    #+#             */
-/*   Updated: 2024/09/18 10:36:23 by ysemlali         ###   ########.fr       */
+/*   Updated: 2025/08/24 08:35:13 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void				ft_dellast(t_oken **lst);
 
 // get_next_line
 
-# ifndef B_S
-#  define B_S 32
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
 # endif
 
 char				*get_next_line(int fd);

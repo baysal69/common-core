@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysemlali & aclakhda <ysemlali & aclackd    +#+  +:+       +#+        */
+/*   By: ysemlali & waissi <ysemlali & aclackd    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 06:58:31 by ysemlali          #+#    #+#             */
 /*   Updated: 2024/08/29 12:05:48 by ysemlali &       ###   ########.fr       */

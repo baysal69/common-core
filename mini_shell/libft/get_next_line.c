@@ -3,75 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysemlali <ysemlali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 10:08:09 by ysemlali          #+#    #+#             */
-/*   Updated: 2023/12/07 18:32:53 by ysemlali         ###   ########.fr       */
+/*   Updated: 2025/08/24 08:36:55 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ln_exists(char *buf)
+char	*ft_join(char *line, char c)
 {
-	size_t	i;
+	int		i;
+	char	*s;
 
 	i = 0;
-	if (!buf)
-		return (0);
-	while (buf[i])
+	while (line && line[i])
+		i++;
+	s = malloc(i + 2);
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (line && line[i])
 	{
-		if (buf[i] == '\n')
-			return (1);
+		s[i] = line[i];
 		i++;
 	}
-	return (0);
-}
-
-char	*ft_get_remainder(char *line)
-{
-	char	*result;
-
-	if (!ln_exists(line))
-		return (free(line), NULL);
-	result = cutstr(line, ln_index(line) + 1, ft_strlen(line));
+	s[i] = c;
+	s[i + 1] = '\0';
 	free(line);
-	return (result);
-}
-
-char	*ft_read_buffer(int fd, char *line)
-{
-	char	*buffer;
-	ssize_t	lines_read;
-
-	buffer = malloc(B_S + 1);
-	if (!buffer)
-		return (NULL);
-	buffer[0] = '\0';
-	lines_read = 1;
-	while (lines_read > 0 && !ln_exists(buffer))
-	{
-		lines_read = read(fd, buffer, B_S);
-		if (lines_read < 0)
-			return (free(buffer), free(line), NULL);
-		buffer[lines_read] = '\0';
-		line = join_string(line, buffer);
-	}
-	free(buffer);
-	return (line);
+	return (s);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
-	char		*output;
+	static char	buffer[BUFFER_SIZE];
+	static int	pos;
+	static int	i;
+	char		*line;
+	char		c;
 
-	if (fd < 0)
-		return (NULL);
-	line = ft_read_buffer(fd, line);
-	if (!line || !line[0])
-		return (free(line), NULL);
-	output = cutstr(line, 0, ln_index(line) + 1);
-	line = ft_get_remainder(line);
-	return (output);
+	line = NULL;
+	while (1)
+	{
+		if (pos >= i)
+		{
+			pos = 0;
+			i = read(fd, buffer, BUFFER_SIZE);
+			if (i <= 0)
+				break ;
+		}
+		c = buffer[pos];
+		pos++;
+		line = ft_join(line, c);
+		if (c == '\n')
+			break ;
+	}
+	return (line);
 }
