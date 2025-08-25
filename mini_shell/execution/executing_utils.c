@@ -49,8 +49,6 @@ int	check_cmd(t_shell *shell)
 		|| !ft_strcmp("env", shell->tree->op) || !ft_strcmp("exit",
 			shell->tree->op))
 		return (1);
-	if (!ft_strcmp("bocchi", shell->tree->op))
-		return (1);
 	return (0);
 }
 
