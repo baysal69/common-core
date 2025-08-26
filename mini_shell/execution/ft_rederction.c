@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rederction.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waissi <waissi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 23:15:09 by waissi          #+#    #+#             */
-/*   Updated: 2025/12/07 15:31:14 by waissi         ###   ########.fr       */
+/*   Created: 2025/07/01 23:15:09 by waissi            #+#    #+#             */
+/*   Updated: 2025/08/25 15:31:14 by waissi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_continue_rederect_herd(t_shell *shell)
 	fd = open(shell->name_list[shell->tree->fd - 3], O_RDWR);
 	if (fd < 0)
 	{
-		open_error("BAYSAL SHELL");
+		open_error("waissi SHELL");
 		g_exit_status = 1;
 		return ;
 	}

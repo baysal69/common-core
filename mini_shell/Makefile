@@ -34,7 +34,7 @@ SRCS =	main/minishell.c  main/init.c main/free.c main/error.c  main/signals.c ma
 			execution/ft_rederction.c\
 			execution/utils_3.c\
 			execution/tree_u2.c\
-			execution/im_gonna_kms.c\
+			execution/pipe_utils.c\
 			execution/bocchi_3.c\
 			execution/help.c\
 			execution/random_file_gen.c\

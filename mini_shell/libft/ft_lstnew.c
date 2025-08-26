@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waissi <waissi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waissi <waissi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:00:56 by ysemlali          #+#    #+#             */
 /*   Updated: 2024/09/10 23:21:22 by waissi         ###   ########.fr       */
